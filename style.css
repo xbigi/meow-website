@@ -1,14 +1,18 @@
 body {
     font-family: Arial, sans-serif;
-    background-color: #333;
+    background-color: #e0e0e0;
     color: #fff;
     text-align: center;
     margin: 0;
     padding: 0;
+    overflow: hidden;
+    background-image: url(background.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
 }
 
 header {
-    background-color: #663399;
     padding: 20px;
     animation: fadeInDown 1s ease-in-out;
 }
@@ -16,15 +20,38 @@ header {
 header h1 {
     font-size: 36px;
     margin: 0;
+    color: #fff;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    animation: textPulse 2s infinite;
+}
+
+header img {
+    width: 100%;
+    height: auto;
+    opacity: 0.7;
+    animation: imageFadeIn 5s ease-in-out infinite;
 }
 
 main {
     padding: 20px;
-    animation: fadeInUp 1s ease-in-out;
+    position: relative;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.animated-text {
+    font-size: 24px;
+    margin: 20px 0;
+    color: #fff;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    animation: textPulse 1.5s infinite;
 }
 
 footer {
-    background-color: #663399;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent overlay */
     padding: 20px;
     position: fixed;
     bottom: 0;
@@ -33,6 +60,7 @@ footer {
 }
 
 /* Animations */
+
 @keyframes fadeInDown {
     0% {
         opacity: 0;
@@ -52,5 +80,29 @@ footer {
     100% {
         opacity: 1;
         transform: translateY(0);
+    }
+}
+
+@keyframes imageFadeIn {
+    0% {
+        opacity: 0.3;
+    }
+    50% {
+        opacity: 0.7;
+    }
+    100% {
+        opacity: 0.3;
+    }
+}
+
+@keyframes textPulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
     }
 }
