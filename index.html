@@ -1,57 +1,399 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>xbigi.xyz</title>
-  <link rel="stylesheet" href="styles.css">
-  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-  <script src="particles-config.js" defer></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>xbigi.xyz</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh; /* Make sure the body takes at least the full viewport height */
+            background: #121212; /* Dark background */
+            color: #a100f2; /* Purple text */
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            overflow: hidden; /* Prevents scrolling */
+            cursor: none; /* Hides default cursor */
+        }
+
+        h1 {
+            margin-top: 40px;
+            font-size: 2.5em;
+            text-shadow: 0 0 20px #a100f2; /* Glowing effect */
+            animation: fadeIn 1s; /* Fade-in animation */
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: center;
+            position: relative;
+            margin: 20px 0;
+        }
+
+        .login-btn {
+            position: absolute;
+            right: 20px;
+            top: 20px;
+            background-color: #333;
+            color: #a100f2;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1em;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.2s;
+        }
+
+        .login-btn:hover {
+            background-color: #444;
+            transform: scale(1.05);
+        }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown button {
+            background-color: #333; 
+            color: #a100f2; 
+            border: none; 
+            padding: 15px 30px; /* Larger button size */
+            font-size: 1.2em; /* Bigger text */
+            cursor: pointer; 
+            border-radius: 5px; 
+            transition: background 0.3s, transform 0.2s; /* Transition effects */
+        }
+
+        .dropdown button:hover {
+            background-color: #444; /* Slightly lighter on hover */
+            transform: scale(1.05); /* Slightly enlarge on hover */
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #333;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+            z-index: 1;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+            animation: fadeIn 0.3s; /* Fade in effect */
+        }
+
+        .dropdown-content a {
+            color: #a100f2; /* Purple text */
+            text-decoration: none;
+            display: block;
+            padding: 10px;
+            transition: background 0.3s, transform 0.2s; /* Transition effects */
+        }
+
+        .dropdown-content a:hover {
+            background-color: #575757;
+            text-shadow: 0 0 10px #a100f2; /* Glowing effect on hover */
+            transform: scale(1.05); /* Slightly enlarge on hover */
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .about {
+            margin: 40px auto;
+            padding: 20px;
+            font-size: 1.2em;
+            max-width: 600px;
+            text-shadow: 0 0 10px #a100f2; /* Glowing effect */
+            animation: fadeIn 1s; /* Fade-in animation */
+        }
+
+        footer {
+            margin-top: auto; /* Pushes footer to the bottom */
+            padding: 10px; /* Smaller padding */
+            background-color: rgba(0, 0, 0, 0.8); /* Faint background */
+            color: #a100f2;
+            text-shadow: 0 0 10px #a100f2; /* Glowing effect */
+            border-top: 1px solid #575757;
+            font-size: 0.9em; /* Smaller font size */
+        }
+
+        /* Animated gradient background */
+        .animated-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(270deg, #42057480, rgba(62, 16, 73, 0.5), #42057480);
+            background-size: 400% 400%;
+            animation: gradientAnimation 15s ease infinite;
+            z-index: -1; /* Behind the content */
+        }
+
+        @keyframes gradientAnimation {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Modal styles */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed;
+            z-index: 1000; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgb(0,0,0); /* Fallback color */
+            background-color: rgba(0,0,0,0.7); /* Black w/ opacity */
+            padding-top: 60px; /* Location of the box */
+            animation: fadeIn 0.5s; /* Fade-in animation */
+        }
+
+        .modal-content {
+            background-color: #333;
+            margin: 5% auto; /* 15% from the top and centered */
+            padding: 20px;
+            border: 1px solid #888;
+            width: 300px; /* Could be more or less, depending on screen size */
+            border-radius: 5px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+            animation: slideIn 0.5s; /* Slide-in animation */
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateY(-50%);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: #fff;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .input-group {
+            margin: 10px 0;
+            text-align: left;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: #a100f2;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+
+        .register-btn, .submit-btn {
+            background-color: #444;
+            color: #a100f2;
+            border: none;
+            padding: 10px;
+            width: 100%;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background 0.3s, transform 0.2s;
+        }
+
+        .register-btn:hover, .submit-btn:hover {
+            background-color: #555;
+            transform: scale(1.05);
+        }
+
+        .forgot-password {
+            color: #a100f2;
+            cursor: pointer;
+            text-decoration: underline;
+            transition: color 0.3s;
+        }
+
+        .forgot-password:hover {
+            color: #ffffff; /* Change color on hover */
+        }
+
+        /* Responsive styles */
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 2em;
+            }
+
+            .dropdown button, .login-btn {
+                padding: 10px;
+                font-size: 0.9em;
+            }
+
+            .about {
+                font-size: 1em;
+            }
+
+            .modal-content {
+                width: 90%; /* Full width on small screens */
+            }
+        }
+
+        /* Custom cursor effect */
+        .cursor {
+            position: fixed;
+            width: 20px; /* Increased cursor size */
+            height: 20px; /* Increased cursor size */
+            background: rgba(161, 0, 242, 0.9); /* Brighter cursor color */
+            border-radius: 50%; /* Round cursor */
+            pointer-events: none; /* Ignore pointer events */
+            transform: translate(-50%, -50%); /* Center the cursor */
+            transition: background 0.3s ease, transform 0.3s ease; /* Smooth transitions */
+            box-shadow: 0 0 10px rgba(161, 0, 242, 0.9); /* Glowing effect */
+        }
+
+        /* Cursor trail effect */
+        .trail {
+            position: absolute;
+            background: rgba(161, 0, 242, 0.5);
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+    </style>
 </head>
 <body>
-  <!-- Particles Background -->
-  <div id="particles-js"></div>
 
-  <!-- Top Bar -->
-  <div class="top-bar">
-    <!-- My Links Dropdown -->
-    <div class="my-links" onclick="toggleDropdown()">
-      <span>My Links</span>
-      <div class="links-dropdown">
-        <a href="https://open.spotify.com/user/azx7kps35rvku7qg7mdyc5m2a?si=bda3082a7a9a46b9" target="_blank">
-          <img src="spotify-logo.png" alt="Spotify"> Spotify
-        </a>
-        <a href="https://discord.gg/WmbHkJEb" target="_blank">
-          <img src="discord-logo.png" alt="Discord"> Discord
-        </a>
-        <a href="https://github.com/xbigi" target="_blank">
-          <img src="github-logo.png" alt="GitHub"> GitHub
-        </a>
-        <a href="https://steamcommunity.com/id/xbigi/" target="_blank">
-          <img src="steam-logo.png" alt="Steam"> Steam
-        </a>
-      </div>
+    <div class="animated-background"></div> <!-- Background animation -->
+
+    <h1>Welcome to xbigi.xyz</h1>
+    
+    <div class="navbar">
+        <button class="login-btn" id="loginBtn">Login</button>
+        <div class="dropdown">
+            <button>Links</button>
+            <div class="dropdown-content">
+                <a href="https://github.com/yourgithub" target="_blank">GitHub</a>
+                <a href="https://spotify.com/yourspotify" target="_blank">Spotify</a>
+                <a href="https://discord.com/users/yourdiscordid" target="_blank">Discord</a>
+                <a href="https://steamcommunity.com/id/yoursteam" target="_blank">Steam</a>
+            </div>
+        </div>
     </div>
-    <!-- Site Title -->
-    <div class="site-title">xbigi.xyz</div>
-  </div>
 
-  <!-- Animated Intro Section -->
-  <div class="intro">
-    <h1 id="intro-text">Welcome to your fav corner of the web.</h1>
-  </div>
-
-  <!-- About Me Section -->
-  <div class="content">
-    <div class="about-me">
-      <p>Hello! I'm xbigi, I live in Italy, I'm 19 years old, and I enjoy creating cool projects.</p>
+    <div class="about">
+        <p>Hello! I'm xbigi, I'm 19 years old and I live in Italy. I like making no sense projects.</p>
     </div>
-  </div>
 
-  <!-- JavaScript -->
-  <script src="script.js"></script>
+    <footer>
+        <p>© 2024 xbigi. All rights reserved.</p>
+    </footer>
 
-  
+    <!-- Modal -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <span class="close" id="closeModal">&times;</span>
+            <h2 style="color: #a100f2;">Login</h2>
+            <div class="input-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" placeholder="Enter your username">
+            </div>
+            <div class="input-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" placeholder="Enter your password">
+            </div>
+            <div class="forgot-password">Forgot Password?</div>
+            <button class="submit-btn">Login</button>
+            <button class="register-btn" onclick="alert('Registration process')">Register</button>
+        </div>
+    </div>
+
+    <script>
+        // Get modal element
+        var modal = document.getElementById("loginModal");
+        var loginBtn = document.getElementById("loginBtn");
+        var closeModal = document.getElementById("closeModal");
+
+        // Listen for open click
+        loginBtn.onclick = function() {
+            modal.style.display = "block";
+        }
+
+        // Listen for close click
+        closeModal.onclick = function() {
+            modal.style.display = "none";
+        }
+
+        // Close modal if outside click
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+
+        // Custom cursor
+        const cursor = document.createElement("div");
+        cursor.classList.add("cursor");
+        document.body.appendChild(cursor);
+
+        // Cursor trail effect
+        const trails = [];
+        const maxTrails = 10; // Number of trails
+
+        function createTrail(x, y) {
+            const trail = document.createElement("div");
+            trail.classList.add("trail");
+            document.body.appendChild(trail);
+            trail.style.left = `${x}px`;
+            trail.style.top = `${y}px`;
+            trails.push(trail);
+
+            // Remove trail after some time
+            setTimeout(() => {
+                trail.style.opacity = '0';
+                setTimeout(() => {
+                    trail.remove();
+                    trails.shift();
+                }, 300); // Wait for fade out to finish
+            }, 100);
+        }
+
+        document.addEventListener("mousemove", (e) => {
+            cursor.style.left = e.pageX + "px";
+            cursor.style.top = e.pageY + "px";
+            createTrail(e.pageX, e.pageY);
+            if (trails.length > maxTrails) {
+                trails[0].remove();
+                trails.shift();
+            }
+        });
+    </script>
+
 </body>
-
 </html>
