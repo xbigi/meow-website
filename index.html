@@ -3,26 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>xbigi.xyz</title>
+    <title>xbigi's hideout</title>
     <style>
         body {
             display: flex;
             flex-direction: column;
-            min-height: 100vh; /* Make sure the body takes at least the full viewport height */
+            min-height: 100vh;
             background: #121212; /* Dark background */
             color: #a100f2; /* Purple text */
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
             text-align: center;
-            overflow: hidden; /* Prevents scrolling */
-            cursor: none; /* Hides default cursor */
+            overflow: hidden; /* Prevent scrolling */
         }
 
         h1 {
             margin-top: 40px;
             font-size: 2.5em;
-            text-shadow: 0 0 20px #a100f2; /* Glowing effect */
+            text-shadow: 0 0 20px #a100f2;
             animation: fadeIn 1s; /* Fade-in animation */
         }
 
@@ -33,44 +32,29 @@
             margin: 20px 0;
         }
 
-        .login-btn {
-            position: absolute;
-            right: 20px;
-            top: 20px;
-            background-color: #333;
-            color: #a100f2;
+        /* General button styles */
+        button {
+            background-color: #444; /* Dark background for buttons */
+            color: #a100f2; /* Purple text */
             border: none;
-            padding: 10px 20px;
-            font-size: 1em;
-            border-radius: 5px;
+            padding: 15px 25px; /* Adjust padding */
+            font-size: 1em; /* Adjust font size */
+            border-radius: 8px; /* Rounder corners */
             cursor: pointer;
-            transition: background 0.3s, transform 0.2s;
+            transition: background 0.3s, transform 0.2s, box-shadow 0.3s; /* Smooth transitions */
+            box-shadow: 0 0 15px rgba(161, 0, 242, 0.5); /* Glow effect */
+            margin: 0 10px; /* Add margin for spacing */
         }
 
-        .login-btn:hover {
-            background-color: #444;
-            transform: scale(1.05);
+        button:hover {
+            background-color: #555; /* Lighter background on hover */
+            transform: translateY(-2px); /* Lift effect */
+            box-shadow: 0 0 25px rgba(161, 0, 242, 0.8); /* Enhanced glow on hover */
         }
 
         .dropdown {
             position: relative;
             display: inline-block;
-        }
-
-        .dropdown button {
-            background-color: #333; 
-            color: #a100f2; 
-            border: none; 
-            padding: 15px 30px; /* Larger button size */
-            font-size: 1.2em; /* Bigger text */
-            cursor: pointer; 
-            border-radius: 5px; 
-            transition: background 0.3s, transform 0.2s; /* Transition effects */
-        }
-
-        .dropdown button:hover {
-            background-color: #444; /* Slightly lighter on hover */
-            transform: scale(1.05); /* Slightly enlarge on hover */
         }
 
         .dropdown-content {
@@ -80,7 +64,7 @@
             box-shadow: 0 8px 16px rgba(0,0,0,0.2);
             z-index: 1;
             padding: 10px;
-            border-radius: 5px;
+            border-radius: 8px;
         }
 
         .dropdown:hover .dropdown-content {
@@ -99,7 +83,7 @@
         .dropdown-content a:hover {
             background-color: #575757;
             text-shadow: 0 0 10px #a100f2; /* Glowing effect on hover */
-            transform: scale(1.05); /* Slightly enlarge on hover */
+            transform: translateY(-2px); /* Lift effect */
         }
 
         @keyframes fadeIn {
@@ -167,7 +151,7 @@
             padding: 20px;
             border: 1px solid #888;
             width: 300px; /* Could be more or less, depending on screen size */
-            border-radius: 5px;
+            border-radius: 8px; /* Rounder corners */
             box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
             animation: slideIn 0.5s; /* Slide-in animation */
         }
@@ -217,19 +201,21 @@
         }
 
         .register-btn, .submit-btn {
-            background-color: #444;
-            color: #a100f2;
+            background-color: #444; /* Dark background for buttons */
+            color: #a100f2; /* Purple text */
             border: none;
             padding: 10px;
             width: 100%;
             cursor: pointer;
-            border-radius: 5px;
+            border-radius: 8px; /* Rounder corners */
             transition: background 0.3s, transform 0.2s;
+            box-shadow: 0 0 15px rgba(161, 0, 242, 0.5); /* Glow effect */
         }
 
         .register-btn:hover, .submit-btn:hover {
-            background-color: #555;
-            transform: scale(1.05);
+            background-color: #555; /* Lighter background on hover */
+            transform: translateY(-2px); /* Lift effect */
+            box-shadow: 0 0 25px rgba(161, 0, 242, 0.8); /* Enhanced glow on hover */
         }
 
         .forgot-password {
@@ -249,7 +235,7 @@
                 font-size: 2em;
             }
 
-            .dropdown button, .login-btn {
+            button {
                 padding: 10px;
                 font-size: 0.9em;
             }
@@ -257,143 +243,131 @@
             .about {
                 font-size: 1em;
             }
-
-            .modal-content {
-                width: 90%; /* Full width on small screens */
-            }
-        }
-
-        /* Custom cursor effect */
-        .cursor {
-            position: fixed;
-            width: 20px; /* Increased cursor size */
-            height: 20px; /* Increased cursor size */
-            background: rgba(161, 0, 242, 0.9); /* Brighter cursor color */
-            border-radius: 50%; /* Round cursor */
-            pointer-events: none; /* Ignore pointer events */
-            transform: translate(-50%, -50%); /* Center the cursor */
-            transition: background 0.3s ease, transform 0.3s ease; /* Smooth transitions */
-            box-shadow: 0 0 10px rgba(161, 0, 242, 0.9); /* Glowing effect */
-        }
-
-        /* Cursor trail effect */
-        .trail {
-            position: absolute;
-            background: rgba(161, 0, 242, 0.5);
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            pointer-events: none;
-            transition: opacity 0.3s ease;
         }
     </style>
 </head>
 <body>
-
-    <div class="animated-background"></div> <!-- Background animation -->
-
+    <div class="animated-background"></div>
     <h1>Welcome to xbigi.xyz</h1>
-    
     <div class="navbar">
-        <button class="login-btn" id="loginBtn">Login</button>
         <div class="dropdown">
             <button>Links</button>
             <div class="dropdown-content">
-                <a href="https://github.com/yourgithub" target="_blank">GitHub</a>
-                <a href="https://spotify.com/yourspotify" target="_blank">Spotify</a>
-                <a href="https://discord.com/users/yourdiscordid" target="_blank">Discord</a>
-                <a href="https://steamcommunity.com/id/yoursteam" target="_blank">Steam</a>
+                <a href="https://github.com/xbigi" target="_blank">GitHub</a>
+                <a href="https://open.spotify.com/user/azx7kps35rvku7qg7mdyc5m2a?si=6688846acac64acc" target="_blank">Spotify</a>
+                <a href="https://discord.gg/WmbHkJEb">Discord</a>
+                <a href="https://steamcommunity.com/id/xbigi/" target="_blank">Steam</a>
             </div>
         </div>
+        <button onclick="document.getElementById('loginModal').style.display='block'">Login</button>
     </div>
 
     <div class="about">
-        <p>Hello! I'm xbigi, I'm 19 years old and I live in Italy. I like making no sense projects.</p>
+        <p>Hello! I'm xbigi, I'm 19 years old 
+            and I live in Italy.I like making 
+            no-sense projects.
+        
+        </p>
     </div>
 
     <footer>
-        <p>© 2024 xbigi. All rights reserved.</p>
+        <p>&copy; 2024 xbigi.xyz. All rights reserved.</p>
     </footer>
 
-    <!-- Modal -->
+    <!-- Registration Modal -->
+    <div id="registerModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="document.getElementById('registerModal').style.display='none'">&times;</span>
+            <h2>Register</h2>
+            <div class="input-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" placeholder="Enter your email">
+            </div>
+            <div class="input-group">
+                <label for="username">Username:</label>
+                <input type="text" id="username" placeholder="Choose a username">
+            </div>
+            <div class="input-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" placeholder="Create a password">
+            </div>
+            <button class="register-btn" onclick="registerUser()">Register</button>
+        </div>
+    </div>
+
+    <!-- Login Modal -->
     <div id="loginModal" class="modal">
         <div class="modal-content">
-            <span class="close" id="closeModal">&times;</span>
-            <h2 style="color: #a100f2;">Login</h2>
+            <span class="close" onclick="document.getElementById('loginModal').style.display='none'">&times;</span>
+            <h2>Login</h2>
             <div class="input-group">
-                <label for="username">Username</label>
-                <input type="text" id="username" placeholder="Enter your username">
+                <label for="loginEmail">Email:</label>
+                <input type="email" id="loginEmail" placeholder="Enter your email">
             </div>
             <div class="input-group">
-                <label for="password">Password</label>
-                <input type="password" id="password" placeholder="Enter your password">
+                <label for="loginPassword">Password:</label>
+                <input type="password" id="loginPassword" placeholder="Enter your password">
             </div>
-            <div class="forgot-password">Forgot Password?</div>
-            <button class="submit-btn">Login</button>
-            <button class="register-btn" onclick="alert('Registration process')">Register</button>
+            <button class="submit-btn" onclick="loginUser()">Login</button>
+            <p class="forgot-password" onclick="showForgotPassword()">Forgot Password?</p>
+            <p class="forgot-password" onclick="switchToRegister()">Don't have an account? Register here.</p>
+        </div>
+    </div>
+
+    <!-- Forgot Password Modal -->
+    <div id="forgotPasswordModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="document.getElementById('forgotPasswordModal').style.display='none'">&times;</span>
+            <h2>Forgot Password</h2>
+            <div class="input-group">
+                <label for="forgotEmail">Email:</label>
+                <input type="email" id="forgotEmail" placeholder="Enter your email">
+            </div>
+            <button class="submit-btn" onclick="sendPasswordReset()">Send Reset Link</button>
         </div>
     </div>
 
     <script>
-        // Get modal element
-        var modal = document.getElementById("loginModal");
-        var loginBtn = document.getElementById("loginBtn");
-        var closeModal = document.getElementById("closeModal");
-
-        // Listen for open click
-        loginBtn.onclick = function() {
-            modal.style.display = "block";
-        }
-
-        // Listen for close click
-        closeModal.onclick = function() {
-            modal.style.display = "none";
-        }
-
-        // Close modal if outside click
+        // Close modal when clicking outside of it
         window.onclick = function(event) {
-            if (event.target == modal) {
-                modal.style.display = "none";
+            if (event.target.className === "modal") {
+                event.target.style.display = "none";
             }
         }
 
-        // Custom cursor
-        const cursor = document.createElement("div");
-        cursor.classList.add("cursor");
-        document.body.appendChild(cursor);
-
-        // Cursor trail effect
-        const trails = [];
-        const maxTrails = 10; // Number of trails
-
-        function createTrail(x, y) {
-            const trail = document.createElement("div");
-            trail.classList.add("trail");
-            document.body.appendChild(trail);
-            trail.style.left = `${x}px`;
-            trail.style.top = `${y}px`;
-            trails.push(trail);
-
-            // Remove trail after some time
-            setTimeout(() => {
-                trail.style.opacity = '0';
-                setTimeout(() => {
-                    trail.remove();
-                    trails.shift();
-                }, 300); // Wait for fade out to finish
-            }, 100);
+        function showForgotPassword() {
+            document.getElementById('loginModal').style.display = 'none';
+            document.getElementById('forgotPasswordModal').style.display = 'block';
         }
 
-        document.addEventListener("mousemove", (e) => {
-            cursor.style.left = e.pageX + "px";
-            cursor.style.top = e.pageY + "px";
-            createTrail(e.pageX, e.pageY);
-            if (trails.length > maxTrails) {
-                trails[0].remove();
-                trails.shift();
-            }
-        });
+        function switchToRegister() {
+            document.getElementById('loginModal').style.display = 'none';
+            document.getElementById('registerModal').style.display = 'block';
+        }
+
+        function registerUser() {
+            const email = document.getElementById('email').value;
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            // Handle registration logic here
+            alert(`Registered with ${email}, ${username}`);
+            document.getElementById('registerModal').style.display = 'none';
+        }
+
+        function loginUser() {
+            const email = document.getElementById('loginEmail').value;
+            const password = document.getElementById('loginPassword').value;
+            // Handle login logic here
+            alert(`Logged in with ${email}`);
+            document.getElementById('loginModal').style.display = 'none';
+        }
+
+        function sendPasswordReset() {
+            const email = document.getElementById('forgotEmail').value;
+            // Handle password reset logic here
+            alert(`Password reset link sent to ${email}`);
+            document.getElementById('forgotPasswordModal').style.display = 'none';
+        }
     </script>
-
 </body>
 </html>
