@@ -4,31 +4,51 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>xbigi.xyz</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+  <script src="particles-config.js" defer></script>
 </head>
 <body>
-  <header>
-    <h1 class="animated-text rainbow-text">xbigi.xyz</h1>
-    <nav>
-      <ul>
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle">Account</a>
-          <ul class="dropdown-menu">
-            <li><a href="login.html">Login</a></li>
-            <li><a href="register.html">Register</a></li>
-          </ul>
-        </li>
-      </ul>
-    </nav>
-  </header>
+  <!-- Particles Background -->
+  <div id="particles-js"></div>
 
-  <h2 class="animated-text">
-   
-    <span id="typing"></span>
-  </h2>
+  <!-- Top Bar -->
+  <div class="top-bar">
+    <!-- My Links Dropdown -->
+    <div class="my-links" onclick="toggleDropdown()">
+      <span>My Links</span>
+      <div class="links-dropdown">
+        <a href="https://open.spotify.com/user/azx7kps35rvku7qg7mdyc5m2a?si=bda3082a7a9a46b9" target="_blank">
+          <img src="spotify-logo.png" alt="Spotify"> Spotify
+        </a>
+        <a href="https://discord.gg/WmbHkJEb" target="_blank">
+          <img src="discord-logo.png" alt="Discord"> Discord
+        </a>
+        <a href="https://github.com/xbigi" target="_blank">
+          <img src="github-logo.png" alt="GitHub"> GitHub
+        </a>
+        <a href="https://steamcommunity.com/id/xbigi/" target="_blank">
+          <img src="steam-logo.png" alt="Steam"> Steam
+        </a>
+      </div>
+    </div>
+    <!-- Site Title -->
+    <div class="site-title">xbigi.xyz</div>
+  </div>
 
-  <p>discord xbigi</p>
+  <!-- Animated Intro Section -->
+  <div class="intro">
+    <h1 id="intro-text">Welcome to your fav corner of the web.</h1>
+  </div>
 
-  <script src="animation.js"></script>
+  <!-- About Me Section -->
+  <div class="content">
+    <div class="about-me">
+      <p>Hello! I'm xbigi, I live in Italy, I'm 19 years old, and I enjoy creating cool projects.</p>
+    </div>
+  </div>
+
+  <!-- JavaScript -->
+  <script src="script.js"></script>
 </body>
 </html>
