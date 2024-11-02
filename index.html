@@ -4,247 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>xbigi's hideout</title>
-    <style>
-        body {
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-            background: #121212; /* Dark background */
-            color: #a100f2; /* Purple text */
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            text-align: center;
-            overflow: hidden; /* Prevent scrolling */
-        }
-
-        h1 {
-            margin-top: 40px;
-            font-size: 2.5em;
-            text-shadow: 0 0 20px #a100f2;
-            animation: fadeIn 1s; /* Fade-in animation */
-        }
-
-        .navbar {
-            display: flex;
-            justify-content: center;
-            position: relative;
-            margin: 20px 0;
-        }
-
-        /* General button styles */
-        button {
-            background-color: #444; /* Dark background for buttons */
-            color: #a100f2; /* Purple text */
-            border: none;
-            padding: 15px 25px; /* Adjust padding */
-            font-size: 1em; /* Adjust font size */
-            border-radius: 8px; /* Rounder corners */
-            cursor: pointer;
-            transition: background 0.3s, transform 0.2s, box-shadow 0.3s; /* Smooth transitions */
-            box-shadow: 0 0 15px rgba(161, 0, 242, 0.5); /* Glow effect */
-            margin: 0 10px; /* Add margin for spacing */
-        }
-
-        button:hover {
-            background-color: #555; /* Lighter background on hover */
-            transform: translateY(-2px); /* Lift effect */
-            box-shadow: 0 0 25px rgba(161, 0, 242, 0.8); /* Enhanced glow on hover */
-        }
-
-        .dropdown {
-            position: relative;
-            display: inline-block;
-        }
-
-        .dropdown-content {
-            display: none;
-            position: absolute;
-            background-color: #333;
-            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
-            z-index: 1;
-            padding: 10px;
-            border-radius: 8px;
-        }
-
-        .dropdown:hover .dropdown-content {
-            display: block;
-            animation: fadeIn 0.3s; /* Fade in effect */
-        }
-
-        .dropdown-content a {
-            color: #a100f2; /* Purple text */
-            text-decoration: none;
-            display: block;
-            padding: 10px;
-            transition: background 0.3s, transform 0.2s; /* Transition effects */
-        }
-
-        .dropdown-content a:hover {
-            background-color: #575757;
-            text-shadow: 0 0 10px #a100f2; /* Glowing effect on hover */
-            transform: translateY(-2px); /* Lift effect */
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        .about {
-            margin: 40px auto;
-            padding: 20px;
-            font-size: 1.2em;
-            max-width: 600px;
-            text-shadow: 0 0 10px #a100f2; /* Glowing effect */
-            animation: fadeIn 1s; /* Fade-in animation */
-        }
-
-        footer {
-            margin-top: auto; /* Pushes footer to the bottom */
-            padding: 10px; /* Smaller padding */
-            background-color: rgba(0, 0, 0, 0.8); /* Faint background */
-            color: #a100f2;
-            text-shadow: 0 0 10px #a100f2; /* Glowing effect */
-            border-top: 1px solid #575757;
-            font-size: 0.9em; /* Smaller font size */
-        }
-
-        /* Animated gradient background */
-        .animated-background {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(270deg, #42057480, rgba(62, 16, 73, 0.5), #42057480);
-            background-size: 400% 400%;
-            animation: gradientAnimation 15s ease infinite;
-            z-index: -1; /* Behind the content */
-        }
-
-        @keyframes gradientAnimation {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        /* Modal styles */
-        .modal {
-            display: none; /* Hidden by default */
-            position: fixed;
-            z-index: 1000; /* Sit on top */
-            left: 0;
-            top: 0;
-            width: 100%; /* Full width */
-            height: 100%; /* Full height */
-            overflow: auto; /* Enable scroll if needed */
-            background-color: rgb(0,0,0); /* Fallback color */
-            background-color: rgba(0,0,0,0.7); /* Black w/ opacity */
-            padding-top: 60px; /* Location of the box */
-            animation: fadeIn 0.5s; /* Fade-in animation */
-        }
-
-        .modal-content {
-            background-color: #333;
-            margin: 5% auto; /* 15% from the top and centered */
-            padding: 20px;
-            border: 1px solid #888;
-            width: 300px; /* Could be more or less, depending on screen size */
-            border-radius: 8px; /* Rounder corners */
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
-            animation: slideIn 0.5s; /* Slide-in animation */
-        }
-
-        @keyframes slideIn {
-            from {
-                transform: translateY(-50%);
-                opacity: 0;
-            }
-            to {
-                transform: translateY(0);
-                opacity: 1;
-            }
-        }
-
-        .close {
-            color: #aaa;
-            float: right;
-            font-size: 28px;
-            font-weight: bold;
-        }
-
-        .close:hover,
-        .close:focus {
-            color: #fff;
-            text-decoration: none;
-            cursor: pointer;
-        }
-
-        .input-group {
-            margin: 10px 0;
-            text-align: left;
-        }
-
-        .input-group label {
-            display: block;
-            margin-bottom: 5px;
-            color: #a100f2;
-        }
-
-        .input-group input {
-            width: 100%;
-            padding: 10px;
-            border: none;
-            border-radius: 5px;
-            margin-bottom: 10px;
-        }
-
-        .register-btn, .submit-btn {
-            background-color: #444; /* Dark background for buttons */
-            color: #a100f2; /* Purple text */
-            border: none;
-            padding: 10px;
-            width: 100%;
-            cursor: pointer;
-            border-radius: 8px; /* Rounder corners */
-            transition: background 0.3s, transform 0.2s;
-            box-shadow: 0 0 15px rgba(161, 0, 242, 0.5); /* Glow effect */
-        }
-
-        .register-btn:hover, .submit-btn:hover {
-            background-color: #555; /* Lighter background on hover */
-            transform: translateY(-2px); /* Lift effect */
-            box-shadow: 0 0 25px rgba(161, 0, 242, 0.8); /* Enhanced glow on hover */
-        }
-
-        .forgot-password {
-            color: #a100f2;
-            cursor: pointer;
-            text-decoration: underline;
-            transition: color 0.3s;
-        }
-
-        .forgot-password:hover {
-            color: #ffffff; /* Change color on hover */
-        }
-
-        /* Responsive styles */
-        @media (max-width: 600px) {
-            h1 {
-                font-size: 2em;
-            }
-
-            button {
-                padding: 10px;
-                font-size: 0.9em;
-            }
-
-            .about {
-                font-size: 1em;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="animated-background"></div>
@@ -255,118 +15,75 @@
             <div class="dropdown-content">
                 <a href="https://github.com/xbigi" target="_blank">GitHub</a>
                 <a href="https://open.spotify.com/user/azx7kps35rvku7qg7mdyc5m2a?si=6688846acac64acc" target="_blank">Spotify</a>
-                <a href="https://discord.gg/zj5rjkwxg4" target="_blank">Discord</a>
-                <a href="https://store.steampowered.com/profile/76561198020225336" target="_blank">Steam</a>
+                <a href="https://discord.gg/WmbHkJEb">Discord</a>
+                <a href="https://steamcommunity.com/id/xbigi/" target="_blank">Steam</a>
             </div>
         </div>
         <button onclick="document.getElementById('loginModal').style.display='block'">Login</button>
-        <button onclick="document.getElementById('registerModal').style.display='block'">Register</button>
     </div>
+
     <div class="about">
         <p>Hello! I'm xbigi, I'm 19 years old and I live in Italy. I like making no-sense projects.</p>
     </div>
 
     <footer>
-        <p>&copy; 2024 xbigi. All rights reserved.</p>
+        <p>&copy; 2024 xbigi.xyz. All rights reserved.</p>
     </footer>
 
-    <!-- Login Modal -->
-    <div id="loginModal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="document.getElementById('loginModal').style.display='none'">&times;</span>
-            <h2>Login</h2>
-            <div class="input-group">
-                <label for="loginEmail">Email:</label>
-                <input type="email" id="loginEmail" required>
-            </div>
-            <div class="input-group">
-                <label for="loginPassword">Password:</label>
-                <input type="password" id="loginPassword" required>
-            </div>
-            <button class="submit-btn" onclick="loginUser()">Login</button>
-            <p class="forgot-password" onclick="alert('Password reset functionality coming soon!')">Forgot Password?</p>
-        </div>
-    </div>
-
-    <!-- Register Modal -->
-    <div id="registerModal" class="modal">
+    <!-- Registration Modal -->
+    <div id="registerModal" class="modal" style="display:none;">
         <div class="modal-content">
             <span class="close" onclick="document.getElementById('registerModal').style.display='none'">&times;</span>
             <h2>Register</h2>
             <div class="input-group">
-                <label for="username">Username:</label>
-                <input type="text" id="username" required>
+                <label for="email">Email:</label>
+                <input type="email" id="email" placeholder="Enter your email">
             </div>
             <div class="input-group">
-                <label for="email">Email:</label>
-                <input type="email" id="email" required>
+                <label for="username">Username:</label>
+                <input type="text" id="username" placeholder="Choose a username">
             </div>
             <div class="input-group">
                 <label for="password">Password:</label>
-                <input type="password" id="password" required>
+                <input type="password" id="password" placeholder="Create a password">
             </div>
             <button class="register-btn" onclick="registerUser()">Register</button>
         </div>
     </div>
 
-    <script type="module">
-        // Import the necessary Firebase SDKs
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
-        import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-auth.js";
+    <!-- Login Modal -->
+    <div id="loginModal" class="modal" style="display:none;">
+        <div class="modal-content">
+            <span class="close" onclick="document.getElementById('loginModal').style.display='none'">&times;</span>
+            <h2>Login</h2>
+            <div class="input-group">
+                <label for="loginEmail">Email:</label>
+                <input type="email" id="loginEmail" placeholder="Enter your email">
+            </div>
+            <div class="input-group">
+                <label for="loginPassword">Password:</label>
+                <input type="password" id="loginPassword" placeholder="Enter your password">
+            </div>
+            <button class="submit-btn" onclick="loginUser()">Login</button>
+            <p class="forgot-password" onclick="showForgotPassword()">Forgot Password?</p>
+            <p class="forgot-password" onclick="switchToRegister()">Don't have an account? Register here.</p>
+        </div>
+    </div>
 
-        // Your web app's Firebase configuration
-        const firebaseConfig = {
-            apiKey: "AIzaSyDkKNoQzwgu4uCAAVfz0fvzN6LxS1XIT44",
-            authDomain: "xbigi-xyz.firebaseapp.com",
-            projectId: "xbigi-xyz",
-            storageBucket: "xbigi-xyz.appspot.com",
-            messagingSenderId: "144509631205",
-            appId: "1:144509631205:web:05833a87185f4c7ea0320c",
-            measurementId: "G-49T7BK..."
-        };
+    <!-- Forgot Password Modal -->
+    <div id="forgotPasswordModal" class="modal" style="display:none;">
+        <div class="modal-content">
+            <span class="close" onclick="document.getElementById('forgotPasswordModal').style.display='none'">&times;</span>
+            <h2>Forgot Password</h2>
+            <div class="input-group">
+                <label for="forgotEmail">Email:</label>
+                <input type="email" id="forgotEmail" placeholder="Enter your email">
+            </div>
+            <button class="submit-btn" onclick="sendPasswordReset()">Send Reset Link</button>
+        </div>
+    </div>
 
-        // Initialize Firebase
-        const app = initializeApp(firebaseConfig);
-        const auth = getAuth(app);
-
-        // Registration function
-        function registerUser() {
-            const email = document.getElementById('email').value;
-            const username = document.getElementById('username').value;
-            const password = document.getElementById('password').value;
-
-            createUserWithEmailAndPassword(auth, email, password)
-                .then((userCredential) => {
-                    // Signed in 
-                    const user = userCredential.user;
-                    alert(`Registered successfully as ${username}`);
-                    document.getElementById('registerModal').style.display = 'none';
-                })
-                .catch((error) => {
-                    const errorCode = error.code;
-                    const errorMessage = error.message;
-                    alert(`Error: ${errorMessage}`);
-                });
-        }
-
-        // Login function
-        function loginUser() {
-            const email = document.getElementById('loginEmail').value;
-            const password = document.getElementById('loginPassword').value;
-
-            signInWithEmailAndPassword(auth, email, password)
-                .then((userCredential) => {
-                    // Signed in 
-                    const user = userCredential.user;
-                    alert(`Logged in as ${user.email}`);
-                    document.getElementById('loginModal').style.display = 'none';
-                })
-                .catch((error) => {
-                    const errorCode = error.code;
-                    const errorMessage = error.message;
-                    alert(`Error: ${errorMessage}`);
-                });
-        }
-    </script>
+    <script src="firebase-config.js"></script>
+    <script src="scripts.js"></script>
 </body>
 </html>

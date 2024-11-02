@@ -1,0 +1,211 @@
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background: #121212; /* Dark background */
+    color: #a100f2; /* Purple text */
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    overflow: hidden; /* Prevent scrolling */
+}
+
+h1 {
+    margin-top: 40px;
+    font-size: 2.5em;
+    text-shadow: 0 0 20px #a100f2;
+    animation: fadeIn 1s; /* Fade-in animation */
+}
+
+.navbar {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    margin: 20px 0;
+}
+
+/* General button styles */
+button {
+    background-color: #444; /* Dark background for buttons */
+    color: #a100f2; /* Purple text */
+    border: none;
+    padding: 15px 25px; /* Adjust padding */
+    font-size: 1em; /* Adjust font size */
+    border-radius: 8px; /* Rounder corners */
+    cursor: pointer;
+    transition: background 0.3s, transform 0.2s, box-shadow 0.3s; /* Smooth transitions */
+    box-shadow: 0 0 15px rgba(161, 0, 242, 0.5); /* Glow effect */
+    margin: 0 10px; /* Add margin for spacing */
+}
+
+button:hover {
+    background-color: #555; /* Lighter background on hover */
+    transform: translateY(-2px); /* Lift effect */
+    box-shadow: 0 0 25px rgba(161, 0, 242, 0.8); /* Enhanced glow on hover */
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #333;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+    z-index: 1;
+    padding: 10px;
+    border-radius: 8px;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+    animation: fadeIn 0.3s; /* Fade in effect */
+}
+
+.dropdown-content a {
+    color: #a100f2; /* Purple text */
+    text-decoration: none;
+    display: block;
+    padding: 10px;
+    transition: background 0.3s, transform 0.2s; /* Transition effects */
+}
+
+.dropdown-content a:hover {
+    background-color: #575757;
+    text-shadow: 0 0 10px #a100f2; /* Glowing effect on hover */
+    transform: translateY(-2px); /* Lift effect */
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.about {
+    margin: 40px auto;
+    padding: 20px;
+    font-size: 1.2em;
+    max-width: 600px;
+    text-shadow: 0 0 10px #a100f2; /* Glowing effect */
+    animation: fadeIn 1s; /* Fade-in animation */
+}
+
+footer {
+    margin-top: auto; /* Pushes footer to the bottom */
+    padding: 10px; /* Smaller padding */
+    background-color: rgba(0, 0, 0, 0.8); /* Faint background */
+    color: #a100f2;
+    text-shadow: 0 0 10px #a100f2; /* Glowing effect */
+    border-top: 1px solid #575757;
+    font-size: 0.9em; /* Smaller font size */
+}
+
+/* Animated gradient background */
+.animated-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(270deg, #42057480, rgba(62, 16, 73, 0.5), #42057480);
+    background-size: 400% 400%;
+    animation: gradientAnimation 15s ease infinite;
+    z-index: -1; /* Behind the content */
+}
+
+@keyframes gradientAnimation {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Modal styles */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed;
+    z-index: 1000; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.8); /* Black with opacity */
+}
+
+.modal-content {
+    background-color: #222; /* Dark background for modal */
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #444; /* Border color */
+    border-radius: 8px; /* Round corners */
+    width: 300px; /* Fixed width for the modal */
+    box-shadow: 0 0 20px rgba(161, 0, 242, 0.5); /* Glow effect */
+}
+
+.close {
+    color: #a100f2; /* Purple text */
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer; /* Pointer cursor */
+}
+
+.close:hover,
+.close:focus {
+    color: #ff0000; /* Red color on hover */
+    text-decoration: none;
+    cursor: pointer; /* Pointer cursor */
+}
+
+.input-group {
+    margin: 10px 0; /* Margin for spacing */
+}
+
+.input-group label {
+    display: block;
+    color: #a100f2; /* Purple text */
+    margin-bottom: 5px; /* Space between label and input */
+}
+
+.input-group input {
+    width: 100%; /* Full width */
+    padding: 10px; /* Padding for inputs */
+    border: none; /* Remove border */
+    border-radius: 4px; /* Rounded corners */
+    box-shadow: inset 0 0 5px rgba(161, 0, 242, 0.5); /* Glow effect */
+}
+
+.input-group input:focus {
+    outline: none; /* Remove outline */
+    box-shadow: 0 0 8px rgba(161, 0, 242, 1); /* Enhanced glow on focus */
+}
+
+.submit-btn, .register-btn {
+    background-color: #444; /* Dark background */
+    color: #a100f2; /* Purple text */
+    border: none; /* Remove border */
+    padding: 10px; /* Padding for button */
+    border-radius: 4px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor */
+    transition: background 0.3s, transform 0.2s; /* Smooth transitions */
+}
+
+.submit-btn:hover, .register-btn:hover {
+    background-color: #555; /* Lighter background on hover */
+    transform: translateY(-2px); /* Lift effect */
+}
+
+.forgot-password {
+    color: #a100f2; /* Purple text */
+    cursor: pointer; /* Pointer cursor */
+    margin-top: 10px; /* Space above */
+}
+
+.forgot-password:hover {
+    text-decoration: underline; /* Underline on hover */
+}
+
