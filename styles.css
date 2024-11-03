@@ -241,8 +241,7 @@ body {
     100% { opacity: 0; }
 }
 
-/* User Profile with Hoverable Dropdown */
-/* User Profile with Popup */
+/* User Profile with Dropdown */
 .user-profile {
     display: flex;
     align-items: center;
@@ -271,9 +270,7 @@ body {
     color: #fff;
     padding: 10px;
     border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-    z-index: 1000;
-    width: 180px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .profile-menu.visible {
@@ -282,21 +279,18 @@ body {
 
 .profile-menu p {
     margin: 0 0 10px 0;
-    font-weight: bold;
-    text-align: center;
 }
 
 .profile-menu button {
     display: block;
     width: 100%;
     padding: 8px;
-    margin-bottom: 5px;
     background-color: #8b5cf6;
     color: #fff;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    text-align: left;
+    margin-bottom: 5px;
 }
 
 .profile-menu button:hover {

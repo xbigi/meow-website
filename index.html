@@ -10,11 +10,11 @@
     <!-- Success and Error Message Placeholder -->
     <div id="message" class="message"></div>
 
-    <!-- User Profile Icon with Popup Menu -->
-    <div id="userProfile" class="user-profile">
-        <span id="usernameDisplay" class="user-icon" onclick="toggleProfilePopup()">👤</span>
+    <!-- User Profile Icon with Dropdown Menu -->
+    <div id="userProfile" class="user-profile" style="display: none;">
+        <span id="usernameDisplay" class="user-icon" onclick="toggleProfileMenu()">👤</span>
         <div id="profileMenu" class="profile-menu">
-            <p id="usernameText">Hello, user@example.com</p>
+            <p id="usernameText"></p>
             <button onclick="logout()">Logout</button>
             <button onclick="resetPassword()">Reset Password</button>
         </div>
@@ -30,10 +30,10 @@
         <div class="dropdown">
             <button class="main-button">My Links</button>
             <div class="dropdown-content">
-                <a href="https://open.spotify.com/user/azx7kps35rvku7qg7mdyc5m2a?si=6688846acac64acc" target="_blank">Spotify</a>
-                <a href="https://github.com/xbigi" target="_blank">GitHub</a>
-                <a href="https://discord.gg/WmbHkJEb" target="_blank">Discord</a>
-                <a href="https://steamcommunity.com/id/xbigi/" target="_blank">Steam</a>
+                <a href="https://spotify.com" target="_blank">Spotify</a>
+                <a href="https://github.com" target="_blank">GitHub</a>
+                <a href="https://discord.com" target="_blank">Discord</a>
+                <a href="https://store.steampowered.com" target="_blank">Steam</a>
             </div>
         </div>
 
