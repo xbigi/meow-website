@@ -1,50 +1,84 @@
-body {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-    background: #121212; /* Dark background */
-    color: #a100f2; /* Purple text */
-    font-family: Arial, sans-serif;
+/* General Reset */
+* {
     margin: 0;
     padding: 0;
-    text-align: center;
-    overflow: hidden; /* Prevent scrolling */
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
 }
 
-h1 {
-    margin-top: 40px;
-    font-size: 2.5em;
-    text-shadow: 0 0 20px #a100f2;
-    animation: fadeIn 1s; /* Fade-in animation */
-}
-
-.navbar {
+/* Background Animation */
+body {
+    background: linear-gradient(135deg, #6e44ff, #8b00ff, #d450ff, #ff6f91);
+    background-size: 200% 200%;
+    animation: backgroundMove 15s ease infinite;
+    color: #fff;
     display: flex;
-    justify-content: center;
-    position: relative;
-    margin: 20px 0;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 100vh;
+    padding: 0 20px;
 }
 
-/* General button styles */
-button {
-    background-color: #444; /* Dark background for buttons */
-    color: #a100f2; /* Purple text */
+@keyframes backgroundMove {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Header and Title Animation */
+.header {
+    text-align: center;
+    padding: 20px;
+}
+
+.animated-title {
+    font-size: 2.5em;
+    font-weight: bold;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 1.5s ease forwards;
+}
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Main Content */
+.content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.footer {
+    text-align: center;
+    font-size: 1em;
+    opacity: 0.9;
+    padding: 20px;
+}
+
+/* Main Buttons */
+.main-button {
+    background-color: #8b5cf6;
+    color: white;
+    padding: 12px 25px;
     border: none;
-    padding: 15px 25px; /* Adjust padding */
-    font-size: 1em; /* Adjust font size */
-    border-radius: 8px; /* Rounder corners */
+    border-radius: 10px;
     cursor: pointer;
-    transition: background 0.3s, transform 0.2s, box-shadow 0.3s; /* Smooth transitions */
-    box-shadow: 0 0 15px rgba(161, 0, 242, 0.5); /* Glow effect */
-    margin: 0 10px; /* Add margin for spacing */
+    font-size: 1.1em;
+    font-weight: bold;
+    transition: transform 0.3s;
 }
 
-button:hover {
-    background-color: #555; /* Lighter background on hover */
-    transform: translateY(-2px); /* Lift effect */
-    box-shadow: 0 0 25px rgba(161, 0, 242, 0.8); /* Enhanced glow on hover */
+.main-button:hover {
+    transform: scale(1.05);
 }
 
+/* Dropdown */
 .dropdown {
     position: relative;
     display: inline-block;
@@ -53,159 +87,218 @@ button:hover {
 .dropdown-content {
     display: none;
     position: absolute;
+    top: 100%;
     background-color: #333;
-    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
-    z-index: 1;
-    padding: 10px;
+    min-width: 160px;
     border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
 .dropdown:hover .dropdown-content {
     display: block;
-    animation: fadeIn 0.3s; /* Fade in effect */
 }
 
 .dropdown-content a {
-    color: #a100f2; /* Purple text */
+    color: #fff;
+    padding: 12px 16px;
     text-decoration: none;
     display: block;
-    padding: 10px;
-    transition: background 0.3s, transform 0.2s; /* Transition effects */
+    transition: background 0.3s ease;
 }
 
 .dropdown-content a:hover {
-    background-color: #575757;
-    text-shadow: 0 0 10px #a100f2; /* Glowing effect on hover */
-    transform: translateY(-2px); /* Lift effect */
+    background-color: #444;
+}
+
+/* Modal and Overlay */
+.modal {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+    width: 90%;
+    max-width: 400px;
+    background-color: #333;
+    border-radius: 10px;
+    padding: 20px;
+    color: #fff;
+    animation: fadeIn 0.3s ease;
+}
+
+.overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 999;
 }
 
 @keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
-.about {
-    margin: 40px auto;
-    padding: 20px;
-    font-size: 1.2em;
-    max-width: 600px;
-    text-shadow: 0 0 10px #a100f2; /* Glowing effect */
-    animation: fadeIn 1s; /* Fade-in animation */
+/* Tabs and Buttons */
+.tab {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
 }
 
-footer {
-    margin-top: auto; /* Pushes footer to the bottom */
-    padding: 10px; /* Smaller padding */
-    background-color: rgba(0, 0, 0, 0.8); /* Faint background */
-    color: #a100f2;
-    text-shadow: 0 0 10px #a100f2; /* Glowing effect */
-    border-top: 1px solid #575757;
-    font-size: 0.9em; /* Smaller font size */
-}
-
-/* Animated gradient background */
-.animated-background {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(270deg, #7700ff80, rgba(0, 0, 0, 0.5), #7700ff80);
-    background-size: 400% 400%;
-    animation: gradientAnimation 15s ease infinite;
-    z-index: -1; /* Behind the content */
-}
-
-@keyframes gradientAnimation {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-}
-
-/* Modal styles */
-.modal {
-    display: none; /* Hidden by default */
-    position: fixed;
-    z-index: 1000; /* Sit on top */
-    left: 0;
-    top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.8); /* Black with opacity */
-}
-
-.modal-content {
-    background-color: #222; /* Dark background for modal */
-    margin: auto;
-    padding: 20px;
-    border: 1px solid #444; /* Border color */
-    border-radius: 8px; /* Round corners */
-    width: 300px; /* Fixed width for the modal */
-    box-shadow: 0 0 20px rgba(161, 0, 242, 0.5); /* Glow effect */
-}
-
-.close {
-    color: #a100f2; /* Purple text */
-    float: right;
-    font-size: 28px;
+.tab-button {
+    background: none;
+    color: #fff;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
     font-weight: bold;
-    cursor: pointer; /* Pointer cursor */
+    transition: color 0.3s;
 }
 
-.close:hover,
-.close:focus {
-    color: #ff0000; /* Red color on hover */
-    text-decoration: none;
-    cursor: pointer; /* Pointer cursor */
+.tab-button.active {
+    color: #8b5cf6;
+    border-bottom: 2px solid #8b5cf6;
 }
 
-.input-group {
-    margin: 10px 0; /* Margin for spacing */
+.tab-content h3 {
+    margin-bottom: 10px;
+    font-size: 1.3em;
 }
 
-.input-group label {
+/* Input Fields and Auth Buttons */
+.auth-form input {
+    padding: 10px;
+    margin: 8px 0;
+    width: 100%;
+    border-radius: 8px;
+    border: 1px solid #8b5cf6;
+    outline: none;
+    transition: border-color 0.3s ease;
+    font-size: 1em;
+}
+
+.auth-form input:focus {
+    border-color: #d0a6ff;
+}
+
+.auth-button {
+    background-color: #8b5cf6;
+    color: #fff;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    width: 100%;
+    margin-top: 10px;
+    cursor: pointer;
+    font-size: 1.1em;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.auth-button:hover {
+    background-color: #6e44ff;
+}
+
+.switch-link {
+    margin-top: 15px;
+    font-size: 0.9em;
+    color: #d0a6ff;
+}
+
+/* Success and Error Message Styling */
+.message {
+    display: none;
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-size: 1em;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    animation: fadeInOut 4s ease forwards;
+}
+
+.message.success {
+    background-color: #4caf50;
+    color: #fff;
+}
+
+.message.error {
+    background-color: #f44336;
+    color: #fff;
+}
+
+@keyframes fadeInOut {
+    0% { opacity: 0; }
+    10% { opacity: 1; }
+    90% { opacity: 1; }
+    100% { opacity: 0; }
+}
+
+/* User Profile with Hoverable Dropdown */
+/* User Profile with Popup */
+.user-profile {
+    display: flex;
+    align-items: center;
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background-color: #8b5cf6;
+    color: #fff;
+    padding: 8px 15px;
+    border-radius: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+}
+
+.user-icon {
+    font-size: 1.2em;
+    cursor: pointer;
+}
+
+.profile-menu {
+    display: none;
+    position: absolute;
+    top: 50px;
+    right: 0;
+    background-color: #333;
+    color: #fff;
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+    width: 180px;
+}
+
+.profile-menu.visible {
     display: block;
-    color: #a100f2; /* Purple text */
-    margin-bottom: 5px; /* Space between label and input */
 }
 
-.input-group input {
-    width: 100%; /* Full width */
-    padding: 10px; /* Padding for inputs */
-    border: none; /* Remove border */
-    border-radius: 4px; /* Rounded corners */
-    box-shadow: inset 0 0 5px rgba(161, 0, 242, 0.5); /* Glow effect */
+.profile-menu p {
+    margin: 0 0 10px 0;
+    font-weight: bold;
+    text-align: center;
 }
 
-.input-group input:focus {
-    outline: none; /* Remove outline */
-    box-shadow: 0 0 8px rgba(161, 0, 242, 1); /* Enhanced glow on focus */
+.profile-menu button {
+    display: block;
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 5px;
+    background-color: #8b5cf6;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: left;
 }
 
-.submit-btn, .register-btn {
-    background-color: #444; /* Dark background */
-    color: #a100f2; /* Purple text */
-    border: none; /* Remove border */
-    padding: 10px; /* Padding for button */
-    border-radius: 4px; /* Rounded corners */
-    cursor: pointer; /* Pointer cursor */
-    transition: background 0.3s, transform 0.2s; /* Smooth transitions */
+.profile-menu button:hover {
+    background-color: #6e44ff;
 }
-
-.submit-btn:hover, .register-btn:hover {
-    background-color: #555; /* Lighter background on hover */
-    transform: translateY(-2px); /* Lift effect */
-}
-
-.forgot-password {
-    color: #a100f2; /* Purple text */
-    cursor: pointer; /* Pointer cursor */
-    margin-top: 10px; /* Space above */
-}
-
-.forgot-password:hover {
-    text-decoration: underline; /* Underline on hover */
-}
-
