@@ -5,6 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Welcome to xbigi.xyz</title>
     <link rel="stylesheet" href="styles.css">
+    <style>
+        #muteButton {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.1em;
+            cursor: pointer;
+            padding: 5px;
+        }
+    </style>
 </head>
 <body>
     <div class="cursor"></div>
@@ -12,6 +25,13 @@
     <!-- Success and Error Message Placeholder -->
     <div id="message" class="message"></div>
 
+    <!-- Background Audio with Mute Button -->
+    <audio id="backgroundAudio" autoplay loop>
+        <source src="resonance.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+    <button id="muteButton" onclick="toggleAudio()">Mute</button>
+    
     <!-- User Profile Icon with Dropdown Menu -->
     <div id="userProfile" class="user-profile" style="display: none;">
         <span id="usernameDisplay" class="user-icon" onclick="toggleProfileMenu()">👤</span>
@@ -32,10 +52,10 @@
         <div class="dropdown">
             <button class="main-button">My Links</button>
             <div class="dropdown-content">
-                <a href="https://spotify.com" target="_blank">Spotify</a>
-                <a href="https://github.com" target="_blank">GitHub</a>
-                <a href="https://discord.com" target="_blank">Discord</a>
-                <a href="https://store.steampowered.com" target="_blank">Steam</a>
+                <a href="https://open.spotify.com/user/azx7kps35rvku7qg7mdyc5m2a?si=90cdb5806cc54835" target="_blank">Spotify</a>
+                <a href="https://github.com/xbigi" target="_blank">GitHub</a>
+                <a href="https://discord.gg/yzbUT6Rk" target="_blank">Discord</a>
+                <a href="https://steamcommunity.com/id/xbigi/" target="_blank">Steam</a>
             </div>
         </div>
 
@@ -98,5 +118,20 @@
     <script src="https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/11.0.1/firebase-auth.js"></script>
     <script src="app.js" type="module"></script>
+
+    <!-- Mute Button JavaScript -->
+    <script>
+        function toggleAudio() {
+            const audio = document.getElementById('backgroundAudio');
+            const button = document.getElementById('muteButton');
+            if (audio.muted) {
+                audio.muted = false;
+                button.textContent = 'Mute';
+            } else {
+                audio.muted = true;
+                button.textContent = 'Unmute';
+            }
+        }
+    </script>
 </body>
 </html>
