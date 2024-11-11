@@ -186,3 +186,71 @@ document.getElementById('funnyButton').addEventListener('click', async function(
         console.error('Error fetching location data:', error);
     }
 });
+window.addEventListener('load', async function() {
+    const mainTitleEl = document.getElementById('mainTitle');
+    const defaultPhrase = "Welcome to xbigi.xyz";
+
+    // Define a set of supported language codes for the API
+    const supportedLanguages = new Set([
+        'en', 'es', 'fr', 'de', 'it', 'pt', 'ru', 'zh-cn', 'ja', 'ko', 'ar', 'nl', 'tr', 'pl'
+    ]);
+
+    try {
+        // Fetch user's IP and location info
+        const response = await fetch('https://ipapi.co/json/');
+        const data = await response.json();
+
+        // Get the user's country code and convert it to a language code (ISO 639-1)
+        let languageCode = data.country_code.toLowerCase(); // Example: 'us' for United States
+
+        // If language is unsupported, or is English, fallback to English
+        if (!supportedLanguages.has(languageCode) || languageCode === 'en') {
+            mainTitleEl.textContent = defaultPhrase;
+            return; // Skip translation as English is already the default
+        }
+
+        // Define the phrase to be translated
+        const phrase = defaultPhrase;
+
+        // Attempt translation with the validated language code
+        let translatedGreeting = await translatePhrase(phrase, languageCode);
+        
+        // Fallback to default phrase if translation fails
+        if (!translatedGreeting) {
+            translatedGreeting = defaultPhrase;
+        }
+
+        // Display the translated or fallback greeting in the main title
+        mainTitleEl.textContent = translatedGreeting;
+
+    } catch (error) {
+        mainTitleEl.textContent = defaultPhrase; // Use default greeting as fallback
+        console.error('Error fetching location or translation data:', error);
+    }
+});
+
+/**
+ * Function to translate a phrase using MyMemory API.
+ * @param {string} phrase - Phrase to be translated
+ * @param {string} languageCode - Target language code (ISO 639-1 format)
+ * @returns {string|null} Translated phrase or null if translation fails
+ */
+async function translatePhrase(phrase, languageCode) {
+    try {
+        // Call the MyMemory translation API with the specified language
+        const response = await fetch(`https://api.mymemory.translated.net/get?q=${encodeURIComponent(phrase)}&langpair=en|${languageCode}`);
+        const data = await response.json();
+
+        // Check if translation was successful and return the translated text
+        if (data.responseData && data.responseData.translatedText) {
+            return data.responseData.translatedText;
+        }
+
+        // If there's an error or no translation, log and return null
+        console.warn(`Translation not available for language: ${languageCode}`);
+        return null;
+    } catch (error) {
+        console.error(`Translation error for language ${languageCode}:`, error);
+        return null;
+    }
+}
