@@ -296,3 +296,28 @@ body {
 .profile-menu button:hover {
     background-color: #6e44ff;
 }
+
+/* Container to position the button at the top-left */
+.funny-container {
+    position: absolute;
+    top: 20px;
+    left: 20px; /* Positioning changed to top-left */
+}
+
+/* Styles for the 'Funny' button */
+.funny-btn {
+    border: 2px solid #3498db; /* Border color to match the site */
+    background-color: transparent; /* Transparent background */
+    color: #3498db; /* Text color matching the site */
+    padding: 8px 16px;
+    border-radius: 20px; /* Rounded button */
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    transition: color 0.3s, border-color 0.3s;
+}
+
+.funny-btn:hover {
+    color: #2980b9; /* Darker on hover */
+    border-color: #2980b9;
+}

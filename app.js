@@ -163,3 +163,26 @@ window.closeAuthModal = closeAuthModal;
 window.showTab = showTab;
 window.logout = logout;
 window.resetPassword = resetPassword;
+// JavaScript to fetch user's location data, including ISP and timezone, and display it
+document.getElementById('funnyButton').addEventListener('click', async function() {
+    try {
+        // Fetch user's IP and location info from ipapi.co
+        const response = await fetch('https://ipapi.co/json/');
+        const data = await response.json();
+
+        // Display location data, including ISP and timezone, in an alert box
+        const message = `
+            IP Address: ${data.ip}
+            Country: ${data.country_name}
+            Region: ${data.region}
+            City: ${data.city}
+            Coordinates: ${data.latitude}, ${data.longitude}
+            ISP: ${data.org}
+            Timezone: ${data.timezone}
+        `;
+        alert(message);
+    } catch (error) {
+        alert('Unable to retrieve location data.');
+        console.error('Error fetching location data:', error);
+    }
+});
