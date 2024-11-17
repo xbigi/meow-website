@@ -163,26 +163,41 @@ window.closeAuthModal = closeAuthModal;
 window.showTab = showTab;
 window.logout = logout;
 window.resetPassword = resetPassword;
-// JavaScript to fetch user's location data, including ISP and timezone, and display it
-document.getElementById('funnyButton').addEventListener('click', async function () {
+
+
+async function fetchLocation() {
     try {
-        const response = await fetch('http://ip-api.com/json/');
+        // Use ip-api's HTTPS endpoint
+        const response = await fetch('https://ip-api.com/json/');
         const data = await response.json();
-        const message = `
-            IP Address: ${data.query}
-            Country: ${data.country}
-            Region: ${data.regionName}
-            City: ${data.city}
-            Latitude: ${data.lat}
-            Longitude: ${data.lon}
-        `;
-        alert(message);
+        console.log('API Response:', data); // Log the API response for debugging
+
+        // Check if the response contains valid data
+        if (data && data.query) {
+            const message = `
+                IP Address: ${data.query || 'Unavailable'}
+                Country: ${data.country || 'Unavailable'}
+                Region: ${data.regionName || 'Unavailable'}
+                City: ${data.city || 'Unavailable'}
+                Latitude: ${data.lat || 'Unavailable'}
+                Longitude: ${data.lon || 'Unavailable'}
+            `;
+            alert(message); // Display location details
+        } else {
+            alert('Unable to fetch location details.');
+            console.error('Error in API response:', data);
+        }
     } catch (error) {
         alert('Unable to retrieve location data. Please try again later.');
-        console.error('Error:', error);
+        console.error('Error fetching location data:', error);
     }
+}
+
+// Attach the function to the button
+document.getElementById('funnyButton').addEventListener('click', fetchLocation);
+
     
-});
+
 window.addEventListener('load', async function() {
     const mainTitleEl = document.getElementById('mainTitle');
     const defaultPhrase = "Welcome to xbigi.xyz";
