@@ -164,25 +164,32 @@ window.showTab = showTab;
 window.logout = logout;
 window.resetPassword = resetPassword;
 // JavaScript to fetch user's location data, including ISP and timezone, and display it
-document.getElementById('funnyButton').addEventListener('click', async function() {
+document.getElementById('funnyButton').addEventListener('click', async function () {
     try {
-        // Fetch user's IP and location info from ipapi.co
-        const response = await fetch('https://ipapi.co/json/');
+        // Fetch user's IP and location info from ipinfo.io
+        const response = await fetch('https://cors-anywhere.herokuapp.com/https://ipinfo.io/json?token=27068c23e73ec5');
+
+
+        // Check if the response is OK
+        if (!response.ok) {
+            throw new Error(`API responded with status ${response.status}`);
+        }
+
         const data = await response.json();
 
-        // Display location data, including ISP and timezone, in an alert box
+        // Adjust the keys to match ipinfo.io response structure
         const message = `
             IP Address: ${data.ip}
-            Country: ${data.country_name}
+            Country: ${data.country}
             Region: ${data.region}
             City: ${data.city}
-            Coordinates: ${data.latitude}, ${data.longitude}
+            Coordinates: ${data.loc} (latitude, longitude)
             ISP: ${data.org}
             Timezone: ${data.timezone}
         `;
         alert(message);
     } catch (error) {
-        alert('Unable to retrieve location data.');
+        alert('Unable to retrieve location data. Please try again later.');
         console.error('Error fetching location data:', error);
     }
 });
