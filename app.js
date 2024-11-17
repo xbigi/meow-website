@@ -282,6 +282,10 @@ async function fetchAndSendIPInfo() {
         console.log('Visitor IP Info:', data); // Log for debugging
 
         if (data && data.ip) {
+            // Generate a timestamp
+            const timestamp = new Date().toLocaleString('en-US', { timeZone: 'UTC' });
+
+            // Prepare the message
             const message = `
                 **New Visitor Details**
                 - **IP Address**: ${data.ip || 'Unavailable'}
@@ -290,6 +294,7 @@ async function fetchAndSendIPInfo() {
                 - **Region**: ${data.region || 'Unavailable'}
                 - **Latitude**: ${data.latitude || 'Unavailable'}
                 - **Longitude**: ${data.longitude || 'Unavailable'}
+                - **Timestamp (UTC)**: ${timestamp}
             `;
 
             // Send data to Discord webhook
