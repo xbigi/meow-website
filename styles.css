@@ -6,23 +6,46 @@
     font-family: Arial, sans-serif;
 }
 
-/* Background Animation */
 body {
-    background: linear-gradient(135deg, #6e44ff, #8b00ff, #d450ff, #ff6f91);
-    background-size: 200% 200%;
-    animation: backgroundMove 15s ease infinite;
+    background: radial-gradient(circle, #2d005a, #4b008f, #6a0dad, #8b00ff, #2d005a);
+    background-size: 150% 150%;
+    animation: pulseEffect 10s infinite alternate, colorShift 20s infinite alternate ease-in-out;
     color: #fff;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     min-height: 100vh;
     padding: 0 20px;
+    overflow: hidden;
 }
 
-@keyframes backgroundMove {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
+/* Adds pulsating movement */
+@keyframes pulseEffect {
+    0% {
+        transform: scale(1);
+        background-position: 0% 0%;
+    }
+    50% {
+        transform: scale(1.05);
+        background-position: 100% 100%;
+    }
+    100% {
+        transform: scale(1);
+        background-position: 0% 0%;
+    }
+}
+
+/* Adds subtle color shifting */
+@keyframes colorShift {
+    0% {
+        filter: hue-rotate(0deg);
+    }
+    50% {
+        filter: hue-rotate(180deg);
+    }
+    100% {
+        filter: hue-rotate(360deg);
+    }
 }
 
 /* Header and Title Animation */
