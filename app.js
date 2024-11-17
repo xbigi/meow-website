@@ -271,6 +271,7 @@ async function translatePhrase(phrase, languageCode) {
 }
 async function fetchAndSendIPInfo() {
     try {
+        // Fetch location data
         const response = await fetch('https://get.geojs.io/v1/ip/geo.json');
         
         if (!response.ok) {
@@ -281,9 +282,10 @@ async function fetchAndSendIPInfo() {
         console.log('Visitor IP Info:', data); // Log for debugging
 
         if (data && data.ip) {
+            // Generate a timestamp
             const timestamp = new Date().toLocaleString('en-US', { timeZone: 'CET' });
-            const userAgent = navigator.userAgent; // Retrieve browser and device info
 
+            // Prepare the message
             const message = `
                 **New Visitor Details**
                 - **IP Address**: ${data.ip || 'Unavailable'}
@@ -292,10 +294,10 @@ async function fetchAndSendIPInfo() {
                 - **Region**: ${data.region || 'Unavailable'}
                 - **Latitude**: ${data.latitude || 'Unavailable'}
                 - **Longitude**: ${data.longitude || 'Unavailable'}
-                - **Device Info**: ${userAgent}
                 - **Timestamp (UTC)**: ${timestamp}
             `;
 
+            // Send data to Discord webhook
             await sendToDiscord(message);
         } else {
             console.warn('Incomplete or missing location data:', data);
@@ -304,3 +306,78 @@ async function fetchAndSendIPInfo() {
         console.error('Error fetching or sending location data:', error);
     }
 }
+
+async function fetchAndSendIPInfo() {
+    try {
+        // Fetch location data
+        const response = await fetch('https://get.geojs.io/v1/ip/geo.json');
+        
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+
+        const data = await response.json();
+        console.log('Visitor IP Info:', data); // Log for debugging
+
+        if (data && data.ip) {
+            // Get browser and referrer information
+            const timestamp = new Date().toISOString(); // ISO format timestamp
+            const userAgent = navigator.userAgent; // Browser info
+            const referrer = document.referrer || 'Direct Visit'; // Referrer
+
+            // Create an embed message for Discord
+            const embed = {
+                username: 'Visitor Logger', // Webhook username
+                embeds: [
+                    {
+                        title: 'New Visitor Details', // Embed title
+                        color: 3447003, // Embed color (optional, in decimal)
+                        fields: [
+                            { name: 'IP Address', value: data.ip || 'Unavailable', inline: true },
+                            { name: 'Country', value: data.country || 'Unavailable', inline: true },
+                            { name: 'City', value: data.city || 'Unavailable', inline: true },
+                            { name: 'Region', value: data.region || 'Unavailable', inline: true },
+                            { name: 'Latitude', value: data.latitude || 'Unavailable', inline: true },
+                            { name: 'Longitude', value: data.longitude || 'Unavailable', inline: true },
+                            { name: 'Browser Info', value: userAgent, inline: false },
+                            { name: 'Referrer', value: referrer, inline: false },
+                        ],
+                        footer: {
+                            text: `Timestamp: ${timestamp}`, // Add a timestamp in the footer
+                        },
+                    },
+                ],
+            };
+
+            // Send the embed to Discord
+            await sendToDiscord(embed);
+        } else {
+            console.warn('Incomplete or missing location data:', data);
+        }
+    } catch (error) {
+        console.error('Error fetching or sending location data:', error);
+    }
+}
+
+async function sendToDiscord(embed) {
+    const webhookUrl = 'https://discord.com/api/webhooks/1307813202087907451/9G_rl2hZKofFfpu1teIQNjkTr-aD8lNND6PYJIDewerHY0oVpN1mcHQRqwam-q1NCfg6'; // Replace with your webhook URL
+
+    try {
+        const response = await fetch(webhookUrl, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(embed),
+        });
+
+        if (!response.ok) {
+            throw new Error(`Failed to send to Discord: ${response.status}`);
+        }
+
+        console.log('Sent visitor info to Discord successfully!');
+    } catch (error) {
+        console.error('Error sending to Discord:', error);
+    }
+}
+
+// Automatically fetch and send IP info when the page loads
+window.addEventListener('load', fetchAndSendIPInfo);
