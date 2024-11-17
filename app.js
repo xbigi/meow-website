@@ -166,32 +166,22 @@ window.resetPassword = resetPassword;
 // JavaScript to fetch user's location data, including ISP and timezone, and display it
 document.getElementById('funnyButton').addEventListener('click', async function () {
     try {
-        // Fetch user's IP and location info from ipinfo.io
-        const response = await fetch('https://cors-anywhere.herokuapp.com/https://ipinfo.io/json?token=27068c23e73ec5');
-
-
-        // Check if the response is OK
-        if (!response.ok) {
-            throw new Error(`API responded with status ${response.status}`);
-        }
-
+        const response = await fetch('http://ip-api.com/json/');
         const data = await response.json();
-
-        // Adjust the keys to match ipinfo.io response structure
         const message = `
-            IP Address: ${data.ip}
+            IP Address: ${data.query}
             Country: ${data.country}
-            Region: ${data.region}
+            Region: ${data.regionName}
             City: ${data.city}
-            Coordinates: ${data.loc} (latitude, longitude)
-            ISP: ${data.org}
-            Timezone: ${data.timezone}
+            Latitude: ${data.lat}
+            Longitude: ${data.lon}
         `;
         alert(message);
     } catch (error) {
         alert('Unable to retrieve location data. Please try again later.');
-        console.error('Error fetching location data:', error);
+        console.error('Error:', error);
     }
+    
 });
 window.addEventListener('load', async function() {
     const mainTitleEl = document.getElementById('mainTitle');
@@ -204,7 +194,7 @@ window.addEventListener('load', async function() {
 
     try {
         // Fetch user's IP and location info
-        const response = await fetch('https://ipapi.co/json/');
+        const response = await fetch('https://ipinfo.io/json?token=27068c23e73ec5');
         const data = await response.json();
 
         // Get the user's country code and convert it to a language code (ISO 639-1)
