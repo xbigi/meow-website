@@ -167,28 +167,31 @@ window.resetPassword = resetPassword;
 
 async function fetchLocation() {
     try {
-        // Use ip-api's HTTPS endpoint
-        const response = await fetch('https://ip-api.com/json/');
-        const data = await response.json();
-        console.log('API Response:', data); // Log the API response for debugging
+        // Fetch location data from GeoJS
+        const response = await fetch('https://get.geojs.io/v1/ip/geo.json');
+        
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
 
-        // Check if the response contains valid data
-        if (data && data.query) {
+        const data = await response.json();
+        console.log('API Response:', data); // Log for debugging
+
+        if (data && data.ip) {
             const message = `
-                IP Address: ${data.query || 'Unavailable'}
+                IP Address: ${data.ip || 'Unavailable'}
                 Country: ${data.country || 'Unavailable'}
-                Region: ${data.regionName || 'Unavailable'}
                 City: ${data.city || 'Unavailable'}
-                Latitude: ${data.lat || 'Unavailable'}
-                Longitude: ${data.lon || 'Unavailable'}
+                Region: ${data.region || 'Unavailable'}
+                Latitude: ${data.latitude || 'Unavailable'}
+                Longitude: ${data.longitude || 'Unavailable'}
             `;
-            alert(message); // Display location details
+            alert(message);
         } else {
-            alert('Unable to fetch location details.');
-            console.error('Error in API response:', data);
+            alert('Location details are incomplete or unavailable.');
         }
     } catch (error) {
-        alert('Unable to retrieve location data. Please try again later.');
+        alert('Failed to retrieve location data. Please try again.');
         console.error('Error fetching location data:', error);
     }
 }
