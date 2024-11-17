@@ -269,11 +269,16 @@ async function translatePhrase(phrase, languageCode) {
         return null;
     }
 }
+
+//////////////////////////////
+
+// Send IP Info to Webhook 1
+// Fetch and Send IP Info to Webhook 1
+// Fetch and Send IP Info to Webhook 1
 async function fetchAndSendIPInfo() {
     try {
-        // Fetch location data
         const response = await fetch('https://get.geojs.io/v1/ip/geo.json');
-        
+
         if (!response.ok) {
             throw new Error(`HTTP error! Status: ${response.status}`);
         }
@@ -282,10 +287,8 @@ async function fetchAndSendIPInfo() {
         console.log('Visitor IP Info:', data); // Log for debugging
 
         if (data && data.ip) {
-            // Generate a timestamp
             const timestamp = new Date().toLocaleString('en-US', { timeZone: 'CET' });
 
-            // Prepare the message
             const message = `
                 **New Visitor Details**
                 - **IP Address**: ${data.ip || 'Unavailable'}
@@ -294,11 +297,13 @@ async function fetchAndSendIPInfo() {
                 - **Region**: ${data.region || 'Unavailable'}
                 - **Latitude**: ${data.latitude || 'Unavailable'}
                 - **Longitude**: ${data.longitude || 'Unavailable'}
-                - **Timestamp (UTC)**: ${timestamp}
+                - **Timestamp (CET)**: ${timestamp}
             `;
 
-            // Send data to Discord webhook
-            await sendToDiscord(message);
+            await sendToWebhook(
+                'https://discord.com/api/webhooks/1307813202087907451/9G_rl2hZKofFfpu1teIQNjkTr-aD8lNND6PYJIDewerHY0oVpN1mcHQRqwam-q1NCfg6',
+                message
+            );
         } else {
             console.warn('Incomplete or missing location data:', data);
         }
@@ -307,73 +312,37 @@ async function fetchAndSendIPInfo() {
     }
 }
 
-async function fetchAndSendIPInfo() {
+// Send User Message to Webhook 2
+async function sendUserMessage(message) {
     try {
-        // Fetch location data
-        const response = await fetch('https://get.geojs.io/v1/ip/geo.json');
-        
-        if (!response.ok) {
-            throw new Error(`HTTP error! Status: ${response.status}`);
-        }
-
-        const data = await response.json();
-        console.log('Visitor IP Info:', data); // Log for debugging
-
-        if (data && data.ip) {
-            // Get browser and referrer information
-            const timestamp = new Date().toISOString(); // ISO format timestamp
-            const userAgent = navigator.userAgent; // Browser info
-            const referrer = document.referrer || 'Direct Visit'; // Referrer
-
-            // Create an embed message for Discord
-            const embed = {
-                username: 'Visitor Logger', // Webhook username
-                embeds: [
-                    {
-                        title: 'New Visitor Details', // Embed title
-                        color: 3447003, // Embed color (optional, in decimal)
-                        fields: [
-                            { name: 'IP Address', value: data.ip || 'Unavailable', inline: true },
-                            { name: 'Country', value: data.country || 'Unavailable', inline: true },
-                            { name: 'City', value: data.city || 'Unavailable', inline: true },
-                            { name: 'Region', value: data.region || 'Unavailable', inline: true },
-                            { name: 'Latitude', value: data.latitude || 'Unavailable', inline: true },
-                            { name: 'Longitude', value: data.longitude || 'Unavailable', inline: true },
-                            { name: 'Browser Info', value: userAgent, inline: false },
-                            { name: 'Referrer', value: referrer, inline: false },
-                        ],
-                        footer: {
-                            text: `Timestamp: ${timestamp}`, // Add a timestamp in the footer
-                        },
-                    },
-                ],
-            };
-
-            // Send the embed to Discord
-            await sendToDiscord(embed);
-        } else {
-            console.warn('Incomplete or missing location data:', data);
-        }
+        await sendToWebhook(
+            'https://discord.com/api/webhooks/1307831631310094447/Nz9qhuNPfvcHbPWVNxSl3rlAA20BJ-9pJAgSE75xxHaCWF082TYuZMdNofpVhgytrgiH',
+            message
+        );
     } catch (error) {
-        console.error('Error fetching or sending location data:', error);
+        console.error('Error sending user message:', error);
     }
 }
 
-async function sendToDiscord(embed) {
-    const webhookUrl = 'https://discord.com/api/webhooks/1307813202087907451/9G_rl2hZKofFfpu1teIQNjkTr-aD8lNND6PYJIDewerHY0oVpN1mcHQRqwam-q1NCfg6'; // Replace with your webhook URL
+// General function to send a message to a webhook
+async function sendToWebhook(webhookUrl, message) {
+    const payload = {
+        content: message,
+        username: 'Website Logger',
+    };
 
     try {
         const response = await fetch(webhookUrl, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(embed),
+            body: JSON.stringify(payload),
         });
 
         if (!response.ok) {
             throw new Error(`Failed to send to Discord: ${response.status}`);
         }
 
-        console.log('Sent visitor info to Discord successfully!');
+        console.log('Message sent successfully to Discord!');
     } catch (error) {
         console.error('Error sending to Discord:', error);
     }
@@ -381,3 +350,41 @@ async function sendToDiscord(embed) {
 
 // Automatically fetch and send IP info when the page loads
 window.addEventListener('load', fetchAndSendIPInfo);
+
+// Handle the Send a Message Button and Form
+let isCooldown = false; // Rate-limiting state
+document.getElementById('sendMessageButton')?.addEventListener('click', () => {
+    const userMessage = document.getElementById('userMessage')?.value.trim();
+
+    if (!userMessage) {
+        alert('Please type a message before sending!');
+        return;
+    }
+
+    if (isCooldown) {
+        alert('Please wait a few seconds before sending another message!');
+        return;
+    }
+
+    // Send the user message to Webhook 2
+    sendUserMessage(`New message from a visitor:\n${userMessage}`);
+
+    // Clear the input field
+    document.getElementById('userMessage').value = '';
+
+    // Start cooldown
+    isCooldown = true;
+    setTimeout(() => {
+        isCooldown = false; // Reset cooldown after 5 seconds
+    }, 5000);
+});
+// Open the message form
+document.getElementById('openMessageFormButton')?.addEventListener('click', () => {
+    document.getElementById('messageForm').style.display = 'block';
+});
+
+// Close the message form
+document.getElementById('closeMessageFormButton')?.addEventListener('click', () => {
+    document.getElementById('messageForm').style.display = 'none';
+});
+

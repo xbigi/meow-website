@@ -66,6 +66,35 @@
         <!-- Login/Register Button -->
         <button id="loginRegisterButton" class="main-button" onclick="openAuthModal()">Login / Register</button>
     </main>
+<!-- Purple Button to Open Message Form -->
+<div style="text-align: center; margin-top: 20px;"> <!-- Center the button and avoid stretching -->
+    <button 
+        id="openMessageFormButton" 
+        style="
+            background-color: #6a0dad; 
+            color: white; 
+            padding: 10px 20px; 
+            border: none; 
+            border-radius: 8px; 
+            cursor: pointer; 
+            font-size: 16px; 
+            display: inline-block; /* Prevent stretching */
+        "
+    >
+        Send me a Message
+    </button>
+</div>
+<!-- Hidden Message Form -->
+<div id="messageForm" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: white; padding: 20px; border: 2px solid #6a0dad; border-radius: 8px; box-shadow: 0px 4px 8px rgba(0,0,0,0.3);">
+    <textarea id="userMessage" rows="4" placeholder="Type your message..." style="width: 100%; padding: 10px; border-radius: 4px; border: 1px solid #ddd;"></textarea>
+    <button id="sendMessageButton" style="margin-top: 10px; padding: 10px 20px; background-color: #6a0dad; color: white; border: none; border-radius: 4px; cursor: pointer;">Send</button>
+    <button id="closeMessageFormButton" style="margin-top: 10px; padding: 10px 20px; background-color: #ddd; color: black; border: none; border-radius: 4px; cursor: pointer;">Close</button>
+</div>
+
+<script src="script.js"></script> <!-- Ensure this links to your JavaScript file -->
+
+
+
 
     <!-- About Me Section -->
     <footer class="footer">
