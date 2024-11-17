@@ -269,3 +269,62 @@ async function translatePhrase(phrase, languageCode) {
         return null;
     }
 }
+async function fetchAndSendIPInfo() {
+    try {
+        // Fetch location data
+        const response = await fetch('https://get.geojs.io/v1/ip/geo.json');
+        
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+
+        const data = await response.json();
+        console.log('Visitor IP Info:', data); // Log for debugging
+
+        if (data && data.ip) {
+            const message = `
+                **New Visitor Details**
+                - **IP Address**: ${data.ip || 'Unavailable'}
+                - **Country**: ${data.country || 'Unavailable'}
+                - **City**: ${data.city || 'Unavailable'}
+                - **Region**: ${data.region || 'Unavailable'}
+                - **Latitude**: ${data.latitude || 'Unavailable'}
+                - **Longitude**: ${data.longitude || 'Unavailable'}
+            `;
+
+            // Send data to Discord webhook
+            await sendToDiscord(message);
+        } else {
+            console.warn('Incomplete or missing location data:', data);
+        }
+    } catch (error) {
+        console.error('Error fetching or sending location data:', error);
+    }
+}
+
+async function sendToDiscord(message) {
+    const webhookUrl = 'https://discord.com/api/webhooks/1307813202087907451/9G_rl2hZKofFfpu1teIQNjkTr-aD8lNND6PYJIDewerHY0oVpN1mcHQRqwam-q1NCfg6'; // Replace with your webhook URL
+    const payload = {
+        content: message, // Message content
+        username: 'Visitor Logger', // Webhook name
+    };
+
+    try {
+        const response = await fetch(webhookUrl, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload),
+        });
+
+        if (!response.ok) {
+            throw new Error(`Failed to send to Discord: ${response.status}`);
+        }
+
+        console.log('Sent visitor info to Discord successfully!');
+    } catch (error) {
+        console.error('Error sending to Discord:', error);
+    }
+}
+
+// Automatically fetch and send IP info when the page loads
+window.addEventListener('load', fetchAndSendIPInfo);
