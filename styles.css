@@ -7,10 +7,11 @@
 }
 
 /* Background Animation */
+/* Background Animation */
 body {
-    background: linear-gradient(135deg, #19032b, #000000, #4b0064, #000000);
+    background: radial-gradient(circle, #2d005a, #4b008f, #6a0dad, #4b008f, #2d005a);
     background-size: 200% 200%;
-    animation: backgroundMove 15s ease infinite;
+    animation: liquidFlow 12s ease-in-out infinite, subtleGlow 6s ease-in-out infinite alternate;
     color: #fff;
     display: flex;
     flex-direction: column;
@@ -19,11 +20,22 @@ body {
     padding: 0 20px;
 }
 
-@keyframes backgroundMove {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
+/* Liquid-like flowing effect */
+@keyframes liquidFlow {
+    0% { background-position: 0% 0%; }
+    25% { background-position: 50% 50%; }
+    50% { background-position: 100% 100%; }
+    75% { background-position: 50% 50%; }
+    100% { background-position: 0% 0%; }
 }
+
+/* Gentle pulsating glow */
+@keyframes subtleGlow {
+    0% { filter: brightness(1); }
+    50% { filter: brightness(1.2); }
+    100% { filter: brightness(1); }
+}
+
 
 /* Header and Title Animation */
 .header {
