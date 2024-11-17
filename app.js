@@ -283,7 +283,7 @@ async function fetchAndSendIPInfo() {
 
         if (data && data.ip) {
             // Generate a timestamp
-            const timestamp = new Date().toLocaleString('en-US', { timeZone: 'UTC' });
+            const timestamp = new Date().toLocaleString('en-US', { timeZone: 'CET' });
 
             // Prepare the message
             const message = `
