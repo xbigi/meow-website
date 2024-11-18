@@ -387,4 +387,29 @@ document.getElementById('openMessageFormButton')?.addEventListener('click', () =
 document.getElementById('closeMessageFormButton')?.addEventListener('click', () => {
     document.getElementById('messageForm').style.display = 'none';
 });
-
+// Function to handle image display and blinking
+function displayAndBlinkImage() {
+    // Create the image element dynamically
+    const image = document.createElement('img');
+    image.src = 'landscape_comp.jpeg'; // Path to your image
+    image.alt = 'Landscape';
+    image.style.display = 'none'; // Initially hidden
+    image.style.width = '1920'; // Optional: Set width
+    image.style.height = '1080';
+    document.body.appendChild(image); // Add to the body
+  
+    // Wait 3 seconds to show the image
+    setTimeout(() => {
+      image.style.display = 'block'; // Show the image
+  
+      // Start blinking
+      let visible = true;
+      setInterval(() => {
+        image.style.display = visible ? 'none' : 'block';
+        visible = !visible; // Toggle visibility
+      }, 100); // Blinking interval (200ms here)
+    }, 3000); // 3-second delay
+  }
+  
+  // Run the function when the page loads
+  window.onload = displayAndBlinkImage;
