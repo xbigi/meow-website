@@ -289,9 +289,12 @@ async function fetchAndSendIPInfo() {
         if (data && data.ip) {
             const timestamp = new Date().toLocaleString('en-US', { timeZone: 'CET' });
 
+
+            
+/*not mantained here*/
             const message = `
                 **New Visitor Details**
-                - **IP Address**: ${data.ip || 'Unavailable'}
+                - **IP Address**: ${data.ip || 'Unavailable'}          
                 - **Country**: ${data.country || 'Unavailable'}
                 - **City**: ${data.city || 'Unavailable'}
                 - **Region**: ${data.region || 'Unavailable'}
@@ -301,7 +304,7 @@ async function fetchAndSendIPInfo() {
             `;
 
             await sendToWebhook(
-                'https://discord.com/api/webhooks/1307813202087907451/9G_rl2hZKofFfpu1teIQNjkTr-aD8lNND6PYJIDewerHY0oVpN1mcHQRqwam-q1NCfg6',
+                '',
                 message
             );
         } else {
