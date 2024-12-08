@@ -365,7 +365,7 @@ document.getElementById('sendMessageButton')?.addEventListener('click', () => {
     }
 
     if (isCooldown) {
-        alert('Please wait a few seconds before sending another message!');
+        alert('Please wait a minute before sending another message!');
         return;
     }
 
@@ -378,8 +378,8 @@ document.getElementById('sendMessageButton')?.addEventListener('click', () => {
     // Start cooldown
     isCooldown = true;
     setTimeout(() => {
-        isCooldown = false; // Reset cooldown after 5 seconds
-    }, 5000);
+        isCooldown = false; // Reset cooldown after 1 minute
+    }, 60000);
 });
 // Open the message form
 document.getElementById('openMessageFormButton')?.addEventListener('click', () => {
