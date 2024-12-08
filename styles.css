@@ -9,7 +9,7 @@
 /* Background Animation */
 /* Background Animation */
 body {
-    background: radial-gradient(circle, #2d005a, #4b008f, #6a0dad, #4b008f, #2d005a);
+    background: radial-gradient(circle, #11244a, #0b1c3e, #061831, #051024, #2d005a);
     background-size: 200% 200%;
     animation: liquidFlow 12s ease-in-out infinite, subtleGlow 6s ease-in-out infinite alternate;
     color: #fff;
@@ -75,7 +75,7 @@ body {
 
 /* Main Buttons */
 .main-button {
-    background-color: #8b5cf6;
+    background-color: #324a7e;
     color: white;
     padding: 12px 25px;
     border: none;
@@ -174,8 +174,8 @@ body {
 }
 
 .tab-button.active {
-    color: #8b5cf6;
-    border-bottom: 2px solid #8b5cf6;
+    color: #324a7e;
+    border-bottom: 2px solid #324a7e;
 }
 
 .tab-content h3 {
@@ -189,18 +189,18 @@ body {
     margin: 8px 0;
     width: 100%;
     border-radius: 8px;
-    border: 1px solid #8b5cf6;
+    border: 1px solid #324a7e;
     outline: none;
     transition: border-color 0.3s ease;
     font-size: 1em;
 }
 
 .auth-form input:focus {
-    border-color: #d0a6ff;
+    border-color: #324a7e;
 }
 
 .auth-button {
-    background-color: #8b5cf6;
+    background-color: #324a7e;
     color: #fff;
     padding: 12px;
     border: none;
@@ -214,13 +214,13 @@ body {
 }
 
 .auth-button:hover {
-    background-color: #6e44ff;
+    background-color: #324a7e;
 }
 
 .switch-link {
     margin-top: 15px;
     font-size: 0.9em;
-    color: #d0a6ff;
+    color: #f9fbfd;
 }
 
 /* Success and Error Message Styling */
@@ -260,7 +260,7 @@ body {
     position: fixed;
     top: 20px;
     right: 20px;
-    background-color: #8b5cf6;
+    background-color: #324a7e;
     color: #fff;
     padding: 8px 15px;
     border-radius: 20px;
@@ -297,7 +297,7 @@ body {
     display: block;
     width: 100%;
     padding: 8px;
-    background-color: #8b5cf6;
+    background-color: #324a7e;
     color: #fff;
     border: none;
     border-radius: 5px;
@@ -306,7 +306,7 @@ body {
 }
 
 .profile-menu button:hover {
-    background-color: #6e44ff;
+    background-color: #324a7e;
 }
 
 /* Container to position the button at the top-left */
