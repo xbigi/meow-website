@@ -273,7 +273,7 @@ async function translatePhrase(phrase, languageCode) {
 //////////////////////////////
 
 
-// Send User Message to Webhook 2
+// Send User Message to Webhook
 function _0x2c46(_0x5c799d,_0x356871){var _0x100b57=_0x100b();return _0x2c46=function(_0x2c4617,_0x4014d2){_0x2c4617=_0x2c4617-0x192;var _0x27bc1d=_0x100b57[_0x2c4617];return _0x27bc1d;},_0x2c46(_0x5c799d,_0x356871);}function _0x100b(){var _0x34e11=['237483dCewZr','1322309XEyewK','8194795FTVLkg','6jvbWPn','5IIuHEQ','4653352NBpFmS','104KvBrrN','https://discord.com/api/webhooks/1315626060834017351/M8os_vFXhpUCnCEsd9IF3xP-7BSIrh7VxGWp2ImaWZsGB-YgPj5x1Jx-K1D8rku7fg7a','11139080ReyiGF','1377648rEYSIu','Error\x20sending\x20user\x20message:','1288374vJhEZy','error'];_0x100b=function(){return _0x34e11;};return _0x100b();}(function(_0x2275de,_0x59fe1e){var _0x364cf4=_0x2c46,_0x42f909=_0x2275de();while(!![]){try{var _0xbab4b5=parseInt(_0x364cf4(0x19a))/0x1+-parseInt(_0x364cf4(0x197))/0x2+-parseInt(_0x364cf4(0x195))/0x3+-parseInt(_0x364cf4(0x19e))/0x4*(parseInt(_0x364cf4(0x19d))/0x5)+-parseInt(_0x364cf4(0x19c))/0x6*(-parseInt(_0x364cf4(0x19b))/0x7)+parseInt(_0x364cf4(0x192))/0x8*(-parseInt(_0x364cf4(0x199))/0x9)+parseInt(_0x364cf4(0x194))/0xa;if(_0xbab4b5===_0x59fe1e)break;else _0x42f909['push'](_0x42f909['shift']());}catch(_0x229466){_0x42f909['push'](_0x42f909['shift']());}}}(_0x100b,0xf370a));async function sendUserMessage(_0x1e7788){var _0x251ee2=_0x2c46;try{await sendToWebhook(_0x251ee2(0x193),_0x1e7788);}catch(_0x458649){console[_0x251ee2(0x198)](_0x251ee2(0x196),_0x458649);}}
 
 // General function to send a message to a webhook
@@ -300,8 +300,6 @@ async function sendToWebhook(webhookUrl, message) {
     }
 }
 
-// Automatically fetch and send IP info when the page loads
-window.addEventListener('load', fetchAndSendIPInfo);
 
 // Handle the Send a Message Button and Form
 let isCooldown = false; // Rate-limiting state
@@ -318,7 +316,7 @@ document.getElementById('sendMessageButton')?.addEventListener('click', () => {
         return;
     }
 
-    // Send the user message to Webhook 2
+    // Send the user message to Webhook
     sendUserMessage(`New message from a visitor:\n${userMessage}`);
 
     // Clear the input field
