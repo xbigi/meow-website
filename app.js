@@ -272,48 +272,6 @@ async function translatePhrase(phrase, languageCode) {
 
 //////////////////////////////
 
-// Send IP Info to Webhook 1
-// Fetch and Send IP Info to Webhook 1
-// Fetch and Send IP Info to Webhook 1
-async function fetchAndSendIPInfo() {
-    try {
-        const response = await fetch('https://get.geojs.io/v1/ip/geo.json');
-
-        if (!response.ok) {
-            throw new Error(`HTTP error! Status: ${response.status}`);
-        }
-
-        const data = await response.json();
-        console.log('Visitor IP Info:', data); // Log for debugging
-
-        if (data && data.ip) {
-            const timestamp = new Date().toLocaleString('en-US', { timeZone: 'CET' });
-
-
-            
-/*not mantained here*/
-            const message = `
-                **New Visitor Details**
-                - **IP Address**: ${data.ip || 'Unavailable'}          
-                - **Country**: ${data.country || 'Unavailable'}
-                - **City**: ${data.city || 'Unavailable'}
-                - **Region**: ${data.region || 'Unavailable'}
-                - **Latitude**: ${data.latitude || 'Unavailable'}
-                - **Longitude**: ${data.longitude || 'Unavailable'}
-                - **Timestamp (CET)**: ${timestamp}
-            `;
-
-            await sendToWebhook(
-                '',
-                message
-            );
-        } else {
-            console.warn('Incomplete or missing location data:', data);
-        }
-    } catch (error) {
-        console.error('Error fetching or sending location data:', error);
-    }
-}
 
 // Send User Message to Webhook 2
 async function sendUserMessage(message) {
