@@ -203,7 +203,7 @@ document.getElementById('funnyButton').addEventListener('click', fetchLocation);
 
 window.addEventListener('load', async function() {
     const mainTitleEl = document.getElementById('mainTitle');
-    const defaultPhrase = "Welcome to xbigi.xyz";
+    const defaultPhrase = "BALLA DO WHILE";
 
     // Define a set of supported language codes for the API
     const supportedLanguages = new Set([
