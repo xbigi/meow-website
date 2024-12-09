@@ -1,1 +1,341 @@
-const _0x485c98=_0x1a5a;(function(_0x59fa2f,_0x2c10ec){const _0x47b2d9=_0x1a5a,_0x43aac1=_0x59fa2f();while(!![]){try{const _0x446aed=parseInt(_0x47b2d9(0xb4))/0x1*(-parseInt(_0x47b2d9(0xbe))/0x2)+-parseInt(_0x47b2d9(0xdb))/0x3+-parseInt(_0x47b2d9(0xe9))/0x4*(-parseInt(_0x47b2d9(0x87))/0x5)+-parseInt(_0x47b2d9(0x84))/0x6+parseInt(_0x47b2d9(0x9f))/0x7+parseInt(_0x47b2d9(0x82))/0x8*(-parseInt(_0x47b2d9(0xe7))/0x9)+parseInt(_0x47b2d9(0x97))/0xa;if(_0x446aed===_0x2c10ec)break;else _0x43aac1['push'](_0x43aac1['shift']());}catch(_0x2e5cb4){_0x43aac1['push'](_0x43aac1['shift']());}}}(_0x3c70,0xad5c7));import{initializeApp}from'https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js';import{getAuth,createUserWithEmailAndPassword,signInWithEmailAndPassword,sendPasswordResetEmail,sendEmailVerification,signOut,onAuthStateChanged}from'https://www.gstatic.com/firebasejs/11.0.1/firebase-auth.js';const firebaseConfig={'apiKey':_0x485c98(0x7e),'authDomain':'xbigi-xyz.firebaseapp.com','projectId':'xbigi-xyz','storageBucket':_0x485c98(0xd4),'messagingSenderId':_0x485c98(0x79),'appId':_0x485c98(0xc8),'measurementId':'G-49T7BK2PJ1'},app=initializeApp(firebaseConfig),auth=getAuth(app);function showMessage(_0x4003f7,_0x471c02=_0x485c98(0xb8)){const _0xdcf48=_0x485c98,_0xcf174c=document[_0xdcf48(0x8d)](_0xdcf48(0xc3));_0xcf174c['textContent']=_0x4003f7,_0xcf174c[_0xdcf48(0xe6)]=_0xdcf48(0xc5)+_0x471c02,_0xcf174c[_0xdcf48(0xd9)][_0xdcf48(0x8f)]='block',setTimeout(()=>{const _0x4b928e=_0xdcf48;_0xcf174c[_0x4b928e(0xd9)]['display']=_0x4b928e(0xea);},0xfa0);}function toggleProfileMenu(){const _0x319196=_0x485c98,_0x261f94=document[_0x319196(0x8d)](_0x319196(0xd8));_0x261f94[_0x319196(0xcf)][_0x319196(0xa3)]('visible');}function showUserProfile(_0x1f5722){const _0x17db43=_0x485c98;document[_0x17db43(0x8d)]('usernameDisplay')[_0x17db43(0xb3)]=_0x17db43(0xba)+_0x1f5722,document['getElementById'](_0x17db43(0xe1))[_0x17db43(0xd9)][_0x17db43(0x8f)]=_0x17db43(0x7d),document[_0x17db43(0x8d)](_0x17db43(0xc7))['style'][_0x17db43(0x8f)]=_0x17db43(0xea);}function _0x1a5a(_0x28748c,_0x5b4964){const _0x3c7052=_0x3c70();return _0x1a5a=function(_0x1a5a42,_0x5dcd50){_0x1a5a42=_0x1a5a42-0x74;let _0x8b2001=_0x3c7052[_0x1a5a42];return _0x8b2001;},_0x1a5a(_0x28748c,_0x5b4964);}function hideUserProfile(){const _0x12df49=_0x485c98;document[_0x12df49(0x8d)](_0x12df49(0xe1))[_0x12df49(0xd9)][_0x12df49(0x8f)]=_0x12df49(0xea),document[_0x12df49(0x8d)](_0x12df49(0xc7))['style']['display']='block';}document[_0x485c98(0x8d)]('registerForm')[_0x485c98(0x9d)]=async _0xc223a0=>{const _0x18ed92=_0x485c98;_0xc223a0['preventDefault']();const _0x583a16=document['getElementById'](_0x18ed92(0xcb))[_0x18ed92(0x7b)],_0x29c099=document[_0x18ed92(0x8d)](_0x18ed92(0xaa))[_0x18ed92(0x7b)];try{const _0x2efd09=await createUserWithEmailAndPassword(auth,_0x583a16,_0x29c099),_0xb1e4a8=_0x2efd09[_0x18ed92(0xdc)];await sendEmailVerification(_0xb1e4a8),showMessage('Registration\x20successful!\x20Please\x20check\x20your\x20email\x20to\x20verify\x20your\x20account.'),await signOut(auth),closeAuthModal();}catch(_0x238390){showMessage(_0x18ed92(0xb0)+_0x238390[_0x18ed92(0xc3)],_0x18ed92(0x89));}},document['getElementById'](_0x485c98(0x9e))['onsubmit']=async _0x2c92c4=>{const _0x27c6eb=_0x485c98;_0x2c92c4[_0x27c6eb(0xb7)]();const _0x2d3766=document['getElementById'](_0x27c6eb(0xed))['value'],_0x1964eb=document[_0x27c6eb(0x8d)](_0x27c6eb(0x77))['value'];try{const _0x40be76=await signInWithEmailAndPassword(auth,_0x2d3766,_0x1964eb),_0x2163fa=_0x40be76[_0x27c6eb(0xdc)];_0x2163fa[_0x27c6eb(0x81)]?(closeAuthModal(),showMessage(_0x27c6eb(0xd0)),showUserProfile(_0x2163fa[_0x27c6eb(0xe8)])):(showMessage('Please\x20verify\x20your\x20email\x20before\x20logging\x20in.','error'),await signOut(auth));}catch(_0x5e841d){showMessage(_0x27c6eb(0xb5)+_0x5e841d[_0x27c6eb(0xc3)],_0x27c6eb(0x89));}};function resetPassword(){const _0x1abb9b=_0x485c98,_0x4af6eb=auth[_0x1abb9b(0x9a)];_0x4af6eb&&sendPasswordResetEmail(auth,_0x4af6eb[_0x1abb9b(0xe8)])[_0x1abb9b(0x7f)](()=>showMessage(_0x1abb9b(0xa4)))[_0x1abb9b(0xd1)](_0xc1bf51=>showMessage('Failed\x20to\x20send\x20reset\x20email:\x20'+_0xc1bf51[_0x1abb9b(0xc3)],_0x1abb9b(0x89)));}function logout(){const _0x141013=_0x485c98;signOut(auth)[_0x141013(0x7f)](()=>{const _0x308879=_0x141013;showMessage(_0x308879(0xa0)),hideUserProfile();})[_0x141013(0xd1)](_0x588da9=>{const _0x4d11bb=_0x141013;showMessage(_0x4d11bb(0x78)+_0x588da9[_0x4d11bb(0xc3)],_0x4d11bb(0x89));});}onAuthStateChanged(auth,_0x38ef24=>{const _0x5b655f=_0x485c98;_0x38ef24&&_0x38ef24[_0x5b655f(0x81)]?showUserProfile(_0x38ef24[_0x5b655f(0xe8)]):hideUserProfile();});function openAuthModal(){const _0x8d4c3f=_0x485c98;document[_0x8d4c3f(0x8d)]('authModal')[_0x8d4c3f(0xd9)]['display']='block',document[_0x8d4c3f(0x8d)]('overlay')['style'][_0x8d4c3f(0x8f)]=_0x8d4c3f(0x85),showTab(_0x8d4c3f(0x76));}function closeAuthModal(){const _0x1487d6=_0x485c98;document[_0x1487d6(0x8d)](_0x1487d6(0xd7))[_0x1487d6(0xd9)][_0x1487d6(0x8f)]=_0x1487d6(0xea),document['getElementById'](_0x1487d6(0xc6))['style'][_0x1487d6(0x8f)]=_0x1487d6(0xea);}function showTab(_0xae1e35){const _0x11d889=_0x485c98;document['querySelectorAll'](_0x11d889(0xa1))[_0x11d889(0xc2)](_0x21ddd1=>_0x21ddd1[_0x11d889(0xd9)][_0x11d889(0x8f)]=_0x11d889(0xea)),document[_0x11d889(0x8d)](_0xae1e35)[_0x11d889(0xd9)][_0x11d889(0x8f)]=_0x11d889(0x85),document[_0x11d889(0xda)](_0x11d889(0xde))[_0x11d889(0xc2)](_0x1daf2b=>_0x1daf2b['classList'][_0x11d889(0x80)](_0x11d889(0xb9))),document[_0x11d889(0xec)](_0x11d889(0xd2)+_0xae1e35+_0x11d889(0xe4))['classList'][_0x11d889(0xa9)]('active');}document[_0x485c98(0x8d)](_0x485c98(0x83))[_0x485c98(0xd3)](_0x485c98(0xa5),toggleProfileMenu),document[_0x485c98(0x8d)]('forgotPasswordForm')[_0x485c98(0x9d)]=async _0x25b2ef=>{const _0x266fe6=_0x485c98;_0x25b2ef[_0x266fe6(0xb7)]();const _0x2aaa39=document['getElementById'](_0x266fe6(0xad))[_0x266fe6(0x7b)];try{await sendPasswordResetEmail(auth,_0x2aaa39),closeAuthModal(),showMessage(_0x266fe6(0xd5));}catch(_0x324967){showMessage('Failed\x20to\x20send\x20reset\x20email:\x20'+_0x324967[_0x266fe6(0xc3)],'error');}},window[_0x485c98(0xca)]=openAuthModal,window[_0x485c98(0x98)]=closeAuthModal,window['showTab']=showTab,window[_0x485c98(0xab)]=logout,window[_0x485c98(0x95)]=resetPassword;async function fetchLocation(){const _0x1cba8d=_0x485c98;try{const _0xf44a0a=await fetch(_0x1cba8d(0x94));if(!_0xf44a0a['ok'])throw new Error(_0x1cba8d(0xaf)+_0xf44a0a[_0x1cba8d(0xdd)]);const _0x4928de=await _0xf44a0a[_0x1cba8d(0x8b)]();console[_0x1cba8d(0x88)](_0x1cba8d(0xdf),_0x4928de);if(_0x4928de&&_0x4928de['ip']){const _0xa11956=_0x1cba8d(0xc4)+(_0x4928de['ip']||_0x1cba8d(0x96))+_0x1cba8d(0xcd)+(_0x4928de[_0x1cba8d(0x9c)]||_0x1cba8d(0x96))+_0x1cba8d(0xa6)+(_0x4928de[_0x1cba8d(0xce)]||_0x1cba8d(0x96))+_0x1cba8d(0x7a)+(_0x4928de[_0x1cba8d(0xe5)]||'Unavailable')+_0x1cba8d(0x91)+(_0x4928de[_0x1cba8d(0x75)]||'Unavailable')+'\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20Longitude:\x20'+(_0x4928de[_0x1cba8d(0xc1)]||_0x1cba8d(0x96))+_0x1cba8d(0xae);alert(_0xa11956);}else alert(_0x1cba8d(0x7c));}catch(_0x8e97cb){alert(_0x1cba8d(0xeb)),console[_0x1cba8d(0x89)](_0x1cba8d(0x93),_0x8e97cb);}}document[_0x485c98(0x8d)]('funnyButton')[_0x485c98(0xd3)](_0x485c98(0xa5),fetchLocation),window[_0x485c98(0xd3)](_0x485c98(0xb6),async function(){const _0x2559d4=_0x485c98,_0x50d5d4=document[_0x2559d4(0x8d)]('mainTitle'),_0x259e12=_0x2559d4(0xbc),_0x551f73=new Set(['en','es','fr','de','it','pt','ru',_0x2559d4(0xac),'ja','ko','ar','nl','tr','pl']);try{const _0x4aaf7f=await fetch('https://ipinfo.io/json?token=27068c23e73ec5'),_0x300287=await _0x4aaf7f['json']();let _0x2670f3=_0x300287['country_code'][_0x2559d4(0xa8)]();if(!_0x551f73['has'](_0x2670f3)||_0x2670f3==='en'){_0x50d5d4[_0x2559d4(0xb3)]=_0x259e12;return;}const _0x7a529a=_0x259e12;let _0x33f741=await translatePhrase(_0x7a529a,_0x2670f3);!_0x33f741&&(_0x33f741=_0x259e12),_0x50d5d4[_0x2559d4(0xb3)]=_0x33f741;}catch(_0x28a30a){_0x50d5d4[_0x2559d4(0xb3)]=_0x259e12,console[_0x2559d4(0x89)](_0x2559d4(0x74),_0x28a30a);}});async function translatePhrase(_0x19ff12,_0x11eb0f){const _0x2bdfbc=_0x485c98;try{const _0x1d2f09=await fetch(_0x2bdfbc(0xa2)+encodeURIComponent(_0x19ff12)+_0x2bdfbc(0x86)+_0x11eb0f),_0x35a089=await _0x1d2f09[_0x2bdfbc(0x8b)]();if(_0x35a089[_0x2bdfbc(0x8a)]&&_0x35a089[_0x2bdfbc(0x8a)][_0x2bdfbc(0xa7)])return _0x35a089[_0x2bdfbc(0x8a)][_0x2bdfbc(0xa7)];return console[_0x2bdfbc(0x99)](_0x2bdfbc(0x92)+_0x11eb0f),null;}catch(_0x434618){return console[_0x2bdfbc(0x89)](_0x2bdfbc(0xbf)+_0x11eb0f+':',_0x434618),null;}}function _0x3c70(){const _0x5d8930=['email','181268SuJfvN','none','Failed\x20to\x20retrieve\x20location\x20data.\x20Please\x20try\x20again.','querySelector','loginEmail','Error\x20fetching\x20location\x20or\x20translation\x20data:','latitude','login','loginPassword','Logout\x20failed:\x20','144509631205','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20Region:\x20','value','Location\x20details\x20are\x20incomplete\x20or\x20unavailable.','flex','AIzaSyDkKNoQzwgu4uCAAVfz0fvzN6LxS1XIT44','then','remove','emailVerified','5832jUXdKg','usernameDisplay','8278740mmtVHo','block','&langpair=en|','130weZjSC','log','error','responseData','json','POST','getElementById','https://discord.com/api/webhooks/1315626060834017351/M8os_vFXhpUCnCEsd9IF3xP-7BSIrh7VxGWp2ImaWZsGB-YgPj5x1Jx-K1D8rku7fg7a','display','Error\x20sending\x20user\x20message:','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20Latitude:\x20','Translation\x20not\x20available\x20for\x20language:\x20','Error\x20fetching\x20location\x20data:','https://get.geojs.io/v1/ip/geo.json','resetPassword','Unavailable','20893730QlBBzy','closeAuthModal','warn','currentUser','New\x20message\x20from\x20a\x20visitor:\x0a','country','onsubmit','loginForm','5946374gjWNfe','Logged\x20out\x20successfully','.tab-content','https://api.mymemory.translated.net/get?q=','toggle','Password\x20reset\x20email\x20sent!','click','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20City:\x20','translatedText','toLowerCase','add','registerPassword','logout','zh-cn','forgotEmail','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20','HTTP\x20error!\x20Status:\x20','Registration\x20failed:\x20','application/json','Message\x20sent\x20successfully\x20to\x20Discord!','textContent','878tkgAZz','Login\x20failed:\x20','load','preventDefault','success','active','👤\x20','Website\x20Logger','Welcome\x20to\x20xbigi.xyz','closeMessageFormButton','2248QGLAGE','Translation\x20error\x20for\x20language\x20','Please\x20wait\x20a\x20minute\x20before\x20sending\x20another\x20message!','longitude','forEach','message','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20IP\x20Address:\x20','message\x20','overlay','loginRegisterButton','1:144509631205:web:05833a87185f4c7ea0320c','Error\x20sending\x20to\x20Discord:','openAuthModal','registerEmail','sendMessageButton','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20Country:\x20','city','classList','Successfully\x20logged\x20in!','catch','button[onclick=\x22showTab(\x27','addEventListener','xbigi-xyz.firebasestorage.app','Password\x20reset\x20email\x20sent\x20successfully!','trim','authModal','profileMenu','style','querySelectorAll','2480253FGYTqV','user','status','.tab-button','API\x20Response:','Please\x20type\x20a\x20message\x20before\x20sending!','userProfile','openMessageFormButton','messageForm','\x27)\x22]','region','className','2637fUbFQf'];_0x3c70=function(){return _0x5d8930;};return _0x3c70();}async function sendUserMessage(_0x199166){const _0x1a441e=_0x485c98;try{await sendToWebhook(_0x1a441e(0x8e),_0x199166);}catch(_0x3f12a8){console[_0x1a441e(0x89)](_0x1a441e(0x90),_0x3f12a8);}}async function sendToWebhook(_0x1cef1d,_0x4c1db4){const _0x43e016=_0x485c98,_0x133a34={'content':_0x4c1db4,'username':_0x43e016(0xbb)};try{const _0x4d52da=await fetch(_0x1cef1d,{'method':_0x43e016(0x8c),'headers':{'Content-Type':_0x43e016(0xb1)},'body':JSON['stringify'](_0x133a34)});if(!_0x4d52da['ok'])throw new Error('Failed\x20to\x20send\x20to\x20Discord:\x20'+_0x4d52da[_0x43e016(0xdd)]);console[_0x43e016(0x88)](_0x43e016(0xb2));}catch(_0x5ae3c6){console['error'](_0x43e016(0xc9),_0x5ae3c6);}}window[_0x485c98(0xd3)](_0x485c98(0xb6),fetchAndSendIPInfo);let isCooldown=![];document[_0x485c98(0x8d)](_0x485c98(0xcc))?.[_0x485c98(0xd3)](_0x485c98(0xa5),()=>{const _0x57d93f=_0x485c98,_0x20d6f0=document[_0x57d93f(0x8d)]('userMessage')?.[_0x57d93f(0x7b)][_0x57d93f(0xd6)]();if(!_0x20d6f0){alert(_0x57d93f(0xe0));return;}if(isCooldown){alert(_0x57d93f(0xc0));return;}sendUserMessage(_0x57d93f(0x9b)+_0x20d6f0),document[_0x57d93f(0x8d)]('userMessage')[_0x57d93f(0x7b)]='',isCooldown=!![],setTimeout(()=>{isCooldown=![];},0xea60);}),document['getElementById'](_0x485c98(0xe2))?.[_0x485c98(0xd3)](_0x485c98(0xa5),()=>{const _0x474626=_0x485c98;document[_0x474626(0x8d)]('messageForm')[_0x474626(0xd9)]['display']=_0x474626(0x85);}),document[_0x485c98(0x8d)](_0x485c98(0xbd))?.[_0x485c98(0xd3)](_0x485c98(0xa5),()=>{const _0x4c9cf0=_0x485c98;document[_0x4c9cf0(0x8d)](_0x4c9cf0(0xe3))[_0x4c9cf0(0xd9)][_0x4c9cf0(0x8f)]=_0x4c9cf0(0xea);});
+import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, sendPasswordResetEmail, sendEmailVerification, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-auth.js";
+
+// Firebase Configuration
+const firebaseConfig = {
+    apiKey: "AIzaSyDkKNoQzwgu4uCAAVfz0fvzN6LxS1XIT44",
+    authDomain: "xbigi-xyz.firebaseapp.com",
+    projectId: "xbigi-xyz",
+    storageBucket: "xbigi-xyz.firebasestorage.app",
+    messagingSenderId: "144509631205",
+    appId: "1:144509631205:web:05833a87185f4c7ea0320c",
+    measurementId: "G-49T7BK2PJ1"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+
+// Show Success or Error Message
+function showMessage(message, type = 'success') {
+    const messageElement = document.getElementById('message');
+    messageElement.textContent = message;
+    messageElement.className = `message ${type}`;
+    messageElement.style.display = 'block';
+    setTimeout(() => {
+        messageElement.style.display = 'none';
+    }, 4000);
+}
+
+// Toggle Profile Menu Visibility
+function toggleProfileMenu() {
+    const profileMenu = document.getElementById('profileMenu');
+    profileMenu.classList.toggle('visible');
+}
+
+// Show User Profile and Hide Login/Register Button
+function showUserProfile(username) {
+    document.getElementById('usernameDisplay').textContent = `👤 ${username}`;
+    document.getElementById('userProfile').style.display = 'flex';
+    document.getElementById('loginRegisterButton').style.display = 'none';
+}
+
+// Hide User Profile and Show Login/Register Button
+function hideUserProfile() {
+    document.getElementById('userProfile').style.display = 'none';
+    document.getElementById('loginRegisterButton').style.display = 'block';
+}
+
+// Register User and Send Verification Email
+document.getElementById('registerForm').onsubmit = async (e) => {
+    e.preventDefault();
+    const email = document.getElementById('registerEmail').value;
+    const password = document.getElementById('registerPassword').value;
+
+    try {
+        const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+        const user = userCredential.user;
+        
+        // Send verification email
+        await sendEmailVerification(user);
+        showMessage('Registration successful! Please check your email to verify your account.');
+
+        // Sign out immediately to require email verification
+        await signOut(auth);
+
+        closeAuthModal();
+    } catch (error) {
+        showMessage(`Registration failed: ${error.message}`, 'error');
+    }
+};
+
+// Login User with Verification Check
+document.getElementById('loginForm').onsubmit = async (e) => {
+    e.preventDefault();
+    const email = document.getElementById('loginEmail').value;
+    const password = document.getElementById('loginPassword').value;
+
+    try {
+        const userCredential = await signInWithEmailAndPassword(auth, email, password);
+        const user = userCredential.user;
+
+        // Check if email is verified
+        if (user.emailVerified) {
+            closeAuthModal();
+            showMessage('Successfully logged in!');
+            showUserProfile(user.email);
+        } else {
+            showMessage('Please verify your email before logging in.', 'error');
+            await signOut(auth);
+        }
+    } catch (error) {
+        showMessage(`Login failed: ${error.message}`, 'error');
+    }
+};
+
+// Send Password Reset Email from Profile
+function resetPassword() {
+    const user = auth.currentUser;
+    if (user) {
+        sendPasswordResetEmail(auth, user.email)
+            .then(() => showMessage('Password reset email sent!'))
+            .catch(error => showMessage(`Failed to send reset email: ${error.message}`, 'error'));
+    }
+}
+
+// Log Out Function
+function logout() {
+    signOut(auth).then(() => {
+        showMessage('Logged out successfully');
+        hideUserProfile();
+    }).catch((error) => {
+        showMessage(`Logout failed: ${error.message}`, 'error');
+    });
+}
+
+// Track Auth State for Showing User Profile
+onAuthStateChanged(auth, (user) => {
+    if (user && user.emailVerified) {
+        showUserProfile(user.email);
+    } else {
+        hideUserProfile();
+    }
+});
+
+// Modal Controls
+function openAuthModal() {
+    document.getElementById('authModal').style.display = 'block';
+    document.getElementById('overlay').style.display = 'block';
+    showTab('login');
+}
+
+function closeAuthModal() {
+    document.getElementById('authModal').style.display = 'none';
+    document.getElementById('overlay').style.display = 'none';
+}
+
+// Tab Switching for Login, Register, and Forgot Password
+function showTab(tabName) {
+    document.querySelectorAll('.tab-content').forEach(tab => tab.style.display = 'none');
+    document.getElementById(tabName).style.display = 'block';
+    document.querySelectorAll('.tab-button').forEach(button => button.classList.remove('active'));
+    document.querySelector(`button[onclick="showTab('${tabName}')"]`).classList.add('active');
+}
+
+// Attach Event Listeners
+document.getElementById('usernameDisplay').addEventListener('click', toggleProfileMenu);
+document.getElementById('forgotPasswordForm').onsubmit = async (e) => {
+    e.preventDefault();
+    const email = document.getElementById('forgotEmail').value;
+
+    try {
+        await sendPasswordResetEmail(auth, email);
+        closeAuthModal();
+        showMessage('Password reset email sent successfully!');
+    } catch (error) {
+        showMessage(`Failed to send reset email: ${error.message}`, 'error');
+    }
+};
+
+// Attach modal and logout functions globally for inline usage
+window.openAuthModal = openAuthModal;
+window.closeAuthModal = closeAuthModal;
+window.showTab = showTab;
+window.logout = logout;
+window.resetPassword = resetPassword;
+
+
+async function fetchLocation() {
+    try {
+        // Fetch location data from GeoJS
+        const response = await fetch('https://get.geojs.io/v1/ip/geo.json');
+        
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+
+        const data = await response.json();
+        console.log('API Response:', data); // Log for debugging
+
+        if (data && data.ip) {
+            const message = `
+                IP Address: ${data.ip || 'Unavailable'}
+                Country: ${data.country || 'Unavailable'}
+                City: ${data.city || 'Unavailable'}
+                Region: ${data.region || 'Unavailable'}
+                Latitude: ${data.latitude || 'Unavailable'}
+                Longitude: ${data.longitude || 'Unavailable'}
+            `;
+            alert(message);
+        } else {
+            alert('Location details are incomplete or unavailable.');
+        }
+    } catch (error) {
+        alert('Failed to retrieve location data. Please try again.');
+        console.error('Error fetching location data:', error);
+    }
+}
+
+// Attach the function to the button
+document.getElementById('funnyButton').addEventListener('click', fetchLocation);
+
+    
+
+window.addEventListener('load', async function() {
+    const mainTitleEl = document.getElementById('mainTitle');
+    const defaultPhrase = "Welcome to xbigi.xyz";
+
+    // Define a set of supported language codes for the API
+    const supportedLanguages = new Set([
+        'en', 'es', 'fr', 'de', 'it', 'pt', 'ru', 'zh-cn', 'ja', 'ko', 'ar', 'nl', 'tr', 'pl'
+    ]);
+
+    try {
+        // Fetch user's IP and location info
+        const response = await fetch('https://ipinfo.io/json?token=27068c23e73ec5');
+        const data = await response.json();
+
+        // Get the user's country code and convert it to a language code (ISO 639-1)
+        let languageCode = data.country_code.toLowerCase(); // Example: 'us' for United States
+
+        // If language is unsupported, or is English, fallback to English
+        if (!supportedLanguages.has(languageCode) || languageCode === 'en') {
+            mainTitleEl.textContent = defaultPhrase;
+            return; // Skip translation as English is already the default
+        }
+
+        // Define the phrase to be translated
+        const phrase = defaultPhrase;
+
+        // Attempt translation with the validated language code
+        let translatedGreeting = await translatePhrase(phrase, languageCode);
+        
+        // Fallback to default phrase if translation fails
+        if (!translatedGreeting) {
+            translatedGreeting = defaultPhrase;
+        }
+
+        // Display the translated or fallback greeting in the main title
+        mainTitleEl.textContent = translatedGreeting;
+
+    } catch (error) {
+        mainTitleEl.textContent = defaultPhrase; // Use default greeting as fallback
+        console.error('Error fetching location or translation data:', error);
+    }
+});
+
+/**
+ * Function to translate a phrase using MyMemory API.
+ * @param {string} phrase - Phrase to be translated
+ * @param {string} languageCode - Target language code (ISO 639-1 format)
+ * @returns {string|null} Translated phrase or null if translation fails
+ */
+async function translatePhrase(phrase, languageCode) {
+    try {
+        // Call the MyMemory translation API with the specified language
+        const response = await fetch(`https://api.mymemory.translated.net/get?q=${encodeURIComponent(phrase)}&langpair=en|${languageCode}`);
+        const data = await response.json();
+
+        // Check if translation was successful and return the translated text
+        if (data.responseData && data.responseData.translatedText) {
+            return data.responseData.translatedText;
+        }
+
+        // If there's an error or no translation, log and return null
+        console.warn(`Translation not available for language: ${languageCode}`);
+        return null;
+    } catch (error) {
+        console.error(`Translation error for language ${languageCode}:`, error);
+        return null;
+    }
+}
+
+//////////////////////////////
+
+
+// Send User Message to Webhook 2
+function _0x2c46(_0x5c799d,_0x356871){var _0x100b57=_0x100b();return _0x2c46=function(_0x2c4617,_0x4014d2){_0x2c4617=_0x2c4617-0x192;var _0x27bc1d=_0x100b57[_0x2c4617];return _0x27bc1d;},_0x2c46(_0x5c799d,_0x356871);}function _0x100b(){var _0x34e11=['237483dCewZr','1322309XEyewK','8194795FTVLkg','6jvbWPn','5IIuHEQ','4653352NBpFmS','104KvBrrN','https://discord.com/api/webhooks/1315626060834017351/M8os_vFXhpUCnCEsd9IF3xP-7BSIrh7VxGWp2ImaWZsGB-YgPj5x1Jx-K1D8rku7fg7a','11139080ReyiGF','1377648rEYSIu','Error\x20sending\x20user\x20message:','1288374vJhEZy','error'];_0x100b=function(){return _0x34e11;};return _0x100b();}(function(_0x2275de,_0x59fe1e){var _0x364cf4=_0x2c46,_0x42f909=_0x2275de();while(!![]){try{var _0xbab4b5=parseInt(_0x364cf4(0x19a))/0x1+-parseInt(_0x364cf4(0x197))/0x2+-parseInt(_0x364cf4(0x195))/0x3+-parseInt(_0x364cf4(0x19e))/0x4*(parseInt(_0x364cf4(0x19d))/0x5)+-parseInt(_0x364cf4(0x19c))/0x6*(-parseInt(_0x364cf4(0x19b))/0x7)+parseInt(_0x364cf4(0x192))/0x8*(-parseInt(_0x364cf4(0x199))/0x9)+parseInt(_0x364cf4(0x194))/0xa;if(_0xbab4b5===_0x59fe1e)break;else _0x42f909['push'](_0x42f909['shift']());}catch(_0x229466){_0x42f909['push'](_0x42f909['shift']());}}}(_0x100b,0xf370a));async function sendUserMessage(_0x1e7788){var _0x251ee2=_0x2c46;try{await sendToWebhook(_0x251ee2(0x193),_0x1e7788);}catch(_0x458649){console[_0x251ee2(0x198)](_0x251ee2(0x196),_0x458649);}}
+
+// General function to send a message to a webhook
+async function sendToWebhook(webhookUrl, message) {
+    const payload = {
+        content: message,
+        username: 'Website Logger',
+    };
+
+    try {
+        const response = await fetch(webhookUrl, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload),
+        });
+
+        if (!response.ok) {
+            throw new Error(`Failed to send to Discord: ${response.status}`);
+        }
+
+        console.log('Message sent successfully to Discord!');
+    } catch (error) {
+        console.error('Error sending to Discord:', error);
+    }
+}
+
+// Automatically fetch and send IP info when the page loads
+window.addEventListener('load', fetchAndSendIPInfo);
+
+// Handle the Send a Message Button and Form
+let isCooldown = false; // Rate-limiting state
+document.getElementById('sendMessageButton')?.addEventListener('click', () => {
+    const userMessage = document.getElementById('userMessage')?.value.trim();
+
+    if (!userMessage) {
+        alert('Please type a message before sending!');
+        return;
+    }
+
+    if (isCooldown) {
+        alert('Please wait a minute before sending another message!');
+        return;
+    }
+
+    // Send the user message to Webhook 2
+    sendUserMessage(`New message from a visitor:\n${userMessage}`);
+
+    // Clear the input field
+    document.getElementById('userMessage').value = '';
+
+    // Start cooldown
+    isCooldown = true;
+    setTimeout(() => {
+        isCooldown = false; // Reset cooldown after 1 minute
+    }, 60000);
+});
+// Open the message form
+document.getElementById('openMessageFormButton')?.addEventListener('click', () => {
+    document.getElementById('messageForm').style.display = 'block';
+});
+
+// Close the message form
+document.getElementById('closeMessageFormButton')?.addEventListener('click', () => {
+    document.getElementById('messageForm').style.display = 'none';
+});
