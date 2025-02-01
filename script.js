@@ -1,3 +1,71 @@
+// Firestore Initialization
+firebase.initializeApp(firebaseConfig);
+const db = firebase.firestore();
+// Import the functions you need from the SDKs you need
+import { initializeApp } from "firebase/app";
+import { getAnalytics } from "firebase/analytics";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
+
+// Your web app's Firebase configuration
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+const firebaseConfig = {
+  apiKey: "AIzaSyDkKNoQzwgu4uCAAVfz0fvzN6LxS1XIT44",
+  authDomain: "xbigi-xyz.firebaseapp.com",
+  projectId: "xbigi-xyz",
+  storageBucket: "xbigi-xyz.firebasestorage.app",
+  messagingSenderId: "144509631205",
+  appId: "1:144509631205:web:05833a87185f4c7ea0320c",
+  measurementId: "G-49T7BK2PJ1"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
+// Post Message to Firestore
+function postToWall() {
+    const input = document.getElementById("wall-input").value.trim();
+    if (!input) return;
+
+    db.collection("wallMessages").add({
+        text: input,
+        timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+        isAdmin: adminMode // Tracks if the user is an admin
+    }).then(() => {
+        document.getElementById("wall-input").value = "";
+        loadWallMessages();
+    });
+}
+
+// Load Messages from Firestore
+function loadWallMessages() {
+    const wallMessagesElem = document.getElementById("wall-messages");
+    wallMessagesElem.innerHTML = "";
+
+    db.collection("wallMessages").orderBy("timestamp", "desc").onSnapshot(snapshot => {
+        wallMessagesElem.innerHTML = "";
+        snapshot.forEach(doc => {
+            const msg = doc.data();
+            const time = msg.timestamp?.toDate().toLocaleTimeString() || "Unknown";
+            const messageElem = document.createElement("p");
+            messageElem.innerHTML = `[${time}] ${msg.text}`;
+
+            // Highlight if admin
+            if (msg.isAdmin) {
+                const adminTag = document.createElement("span");
+                adminTag.innerText = " ADMIN";
+                adminTag.style.color = "red";
+                adminTag.style.fontWeight = "bold";
+                adminTag.style.marginLeft = "5px";
+                messageElem.appendChild(adminTag);
+            }
+
+            wallMessagesElem.appendChild(messageElem);
+        });
+    });
+}
+
+
 document.addEventListener("DOMContentLoaded", () => {
     console.log("Website Loaded Successfully");
     attachEventListeners();
