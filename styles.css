@@ -46,7 +46,7 @@ nav {
 }
 
 .menu a:hover {
-    background: #ff9800;
+    background: #ae00ff;
     color: #000;
     transform: scale(1.1);
 }
@@ -89,7 +89,7 @@ nav {
 
 .dropdown-menu a:hover {
     background: #444;
-    color: #ff9800;
+    color: #ae00ff;
 }
 
 /* Tool Section */
@@ -122,7 +122,7 @@ footer {
 }
 
 footer a {
-    color: #ff9800;
+    color: #ae00ff;
     text-decoration: none;
     margin: 0 10px;
 }
@@ -133,7 +133,7 @@ footer a:hover {
 
 /* Buttons */
 button {
-    background: #ff9800;
+    background: #ae00ff;
     color: #000;
     border: none;
     padding: 10px 15px;
@@ -144,7 +144,7 @@ button {
 }
 
 button:hover {
-    background: #e68900;
+    background: #ae00ff;
     transform: scale(1.1);
 }
 
@@ -163,14 +163,14 @@ input[type="text"], input[type="number"], textarea {
 
 input:focus, textarea:focus {
     outline: none;
-    border-color: #ff9800;
+    border-color: #ae00ff;
 }
 
 /* Coin Flip Animation */
 .coin {
     width: 100px;
     height: 100px;
-    background: radial-gradient(circle, #ffcc00, #ff9900);
+    background: radial-gradient(circle, #b700ff, #330249);
     border-radius: 50%;
     display: flex;
     align-items: center;
