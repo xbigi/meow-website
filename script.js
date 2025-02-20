@@ -9,24 +9,26 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 function attachEventListeners() {
-    document.querySelector(".menu").addEventListener("click", (event) => {
-        // Prevent default action for dropdown toggles
-        if (event.target.tagName === "A" && event.target.closest(".dropdown")) {
+    // Toggle dropdown visibility when clicking on the menu items
+    document.querySelectorAll(".dropdown > a").forEach((dropdownToggle) => {
+        dropdownToggle.addEventListener("click", (event) => {
             event.preventDefault();
-            const dropdownMenu = event.target.nextElementSibling;
-            if (dropdownMenu && dropdownMenu.classList.contains("dropdown-menu")) {
+            const dropdownMenu = dropdownToggle.nextElementSibling;
+            if (dropdownMenu) {
                 dropdownMenu.classList.toggle("visible");
             }
-        }
+        });
+    });
 
-        // Handle tool selection
-        if (event.target.tagName === "A" && event.target.closest(".dropdown-menu")) {
+    // Handle tool selection
+    document.querySelectorAll(".dropdown-menu a").forEach((toolButton) => {
+        toolButton.addEventListener("click", (event) => {
+            event.preventDefault();
             const tool = event.target.dataset.tool;
             if (tool) {
-                event.preventDefault();
                 openTool(tool);
             }
-        }
+        });
     });
 
     // Close dropdown if clicked outside
@@ -38,6 +40,7 @@ function attachEventListeners() {
         }
     });
 }
+
 
 
 
