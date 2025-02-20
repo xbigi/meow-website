@@ -12,7 +12,7 @@ body {
 /* Light Mode */
 body.light-mode {
     background: linear-gradient(135deg, #ffffff, #f0f0f0);
-    color: #000;
+    color: #ffffff;
 }
 
 /* Navigation Bar */
