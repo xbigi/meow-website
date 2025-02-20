@@ -10,26 +10,21 @@ document.addEventListener("DOMContentLoaded", () => {
 
 function attachEventListeners() {
     // Toggle dropdown visibility when clicking on the menu items
-    document.querySelectorAll(".dropdown > a").forEach((dropdownToggle) => {
-        dropdownToggle.addEventListener("click", (event) => {
-            event.preventDefault();
-            const dropdownMenu = dropdownToggle.nextElementSibling;
-            if (dropdownMenu) {
-                dropdownMenu.classList.toggle("visible");
-            }
-        });
-    });
+    document.querySelectorAll(".dropdown-menu a").forEach((menuItem) => {
+    menuItem.addEventListener("click", (event) => {
+        const tool = event.target.dataset.tool;
 
-    // Handle tool selection
-    document.querySelectorAll(".dropdown-menu a").forEach((toolButton) => {
-        toolButton.addEventListener("click", (event) => {
+        // Only prevent default behavior for tool links, not external links
+        if (tool) {
             event.preventDefault();
-            const tool = event.target.dataset.tool;
-            if (tool) {
-                openTool(tool);
-            }
-        });
+            openTool(tool);
+        }
     });
+});
+
+
+ 
+
 
     // Close dropdown if clicked outside
     document.addEventListener("click", (event) => {
