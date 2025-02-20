@@ -1,69 +1,5 @@
-// Firestore Initialization
-firebase.initializeApp(firebaseConfig);
-const db = firebase.firestore();
-// Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
 
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
-const firebaseConfig = {
-  apiKey: "AIzaSyDkKNoQzwgu4uCAAVfz0fvzN6LxS1XIT44",
-  authDomain: "xbigi-xyz.firebaseapp.com",
-  projectId: "xbigi-xyz",
-  storageBucket: "xbigi-xyz.firebasestorage.app",
-  messagingSenderId: "144509631205",
-  appId: "1:144509631205:web:05833a87185f4c7ea0320c",
-  measurementId: "G-49T7BK2PJ1"
-};
 
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
-// Post Message to Firestore
-function postToWall() {
-    const input = document.getElementById("wall-input").value.trim();
-    if (!input) return;
-
-    db.collection("wallMessages").add({
-        text: input,
-        timestamp: firebase.firestore.FieldValue.serverTimestamp(),
-        isAdmin: adminMode // Tracks if the user is an admin
-    }).then(() => {
-        document.getElementById("wall-input").value = "";
-        loadWallMessages();
-    });
-}
-
-// Load Messages from Firestore
-function loadWallMessages() {
-    const wallMessagesElem = document.getElementById("wall-messages");
-    wallMessagesElem.innerHTML = "";
-
-    db.collection("wallMessages").orderBy("timestamp", "desc").onSnapshot(snapshot => {
-        wallMessagesElem.innerHTML = "";
-        snapshot.forEach(doc => {
-            const msg = doc.data();
-            const time = msg.timestamp?.toDate().toLocaleTimeString() || "Unknown";
-            const messageElem = document.createElement("p");
-            messageElem.innerHTML = `[${time}] ${msg.text}`;
-
-            // Highlight if admin
-            if (msg.isAdmin) {
-                const adminTag = document.createElement("span");
-                adminTag.innerText = " ADMIN";
-                adminTag.style.color = "red";
-                adminTag.style.fontWeight = "bold";
-                adminTag.style.marginLeft = "5px";
-                messageElem.appendChild(adminTag);
-            }
-
-            wallMessagesElem.appendChild(messageElem);
-        });
-    });
-}
 
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -181,92 +117,15 @@ function openTool(tool) {
     }, 300);
 }
 
-function setupWall(toolContainer) {
-    toolContainer.innerHTML = `<h2>The Wall</h2>
-        <textarea id='wall-input' placeholder='Write something...' rows='4' cols='50' maxlength='200'></textarea>
-        <button id='wall-submit'>Post</button>
-        <p id='wall-message'></p>
-        <div id='wall-messages' style='margin-top: 20px;'></div>`;
-
-    document.getElementById("wall-submit").addEventListener("click", () => {
-        postToWall();
-    });
-
-    loadWallMessages();
-}
 
 
-const cooldownTime = 6 * 60 * 60 * 1000; // 6 hours in milliseconds
 
-function postToWall() {
-    const input = document.getElementById("wall-input").value.trim();
-    const messageElem = document.getElementById("wall-message");
-    const now = Date.now();
-    const lastPostTime = localStorage.getItem("lastWallPost");
 
-    if (btoa(input) === secretCode) {
-        adminMode = true;
-localStorage.setItem("adminMode", "true");
 
-        messageElem.innerText = "Admin mode activated. You can now delete messages.";
-        localStorage.removeItem("lastWallPost"); // Bypass cooldown
-        loadWallMessages();
-        return;
-    }
+
     
 
-    if (lastPostTime && now - lastPostTime < cooldownTime) {
-        const remainingTime = Math.ceil((cooldownTime - (now - lastPostTime)) / 60000);
-        messageElem.innerText = `Please wait ${remainingTime} minutes before posting again.`;
-        return;
-    }
 
-
-    // Post message
-    const messages = JSON.parse(localStorage.getItem("wallMessages")) || [];
-    messages.unshift({ text: input, timestamp: now });
-    localStorage.setItem("wallMessages", JSON.stringify(messages));
-    localStorage.setItem("lastWallPost", now);
-
-    document.getElementById("wall-input").value = "";
-    messageElem.innerText = "Message posted successfully!";
-
-    loadWallMessages();
-}
-
-function loadWallMessages() {
-    const messages = JSON.parse(localStorage.getItem("wallMessages")) || [];
-    const wallMessagesElem = document.getElementById("wall-messages");
-    wallMessagesElem.innerHTML = "";
-
-    messages.slice(0, 10).forEach((msg, index) => {
-        const time = new Date(msg.timestamp).toLocaleTimeString();
-        const date = new Date(msg.timestamp).toLocaleDateString();
-        const messageElem = document.createElement("p");
-        messageElem.innerText = `[${date} ${time}] ${msg.text}`;
-
-        // Show "ADMIN" tag if message is from admin
-        if (msg.isAdmin === true) {
-            const adminTag = document.createElement("span");
-            adminTag.innerText = " ADMIN";
-            adminTag.style.color = "red";
-            adminTag.style.fontWeight = "bold";
-            adminTag.style.marginLeft = "5px";
-            messageElem.appendChild(adminTag);
-        }
-
-        // Show delete button if admin is viewing
-        if (adminMode) {
-            const deleteBtn = document.createElement("button");
-            deleteBtn.innerText = "❌";
-            deleteBtn.style.marginLeft = "10px";
-            deleteBtn.onclick = () => deleteWallMessage(index);
-            messageElem.appendChild(deleteBtn);
-        }
-
-        wallMessagesElem.appendChild(messageElem);
-    });
-}
 
 
 function generatePassword() {
@@ -353,76 +212,8 @@ function updateWordCount() {
 function _0x56dc(){const _0x2f0fc6=['1ivSmuo','10yawlhC','702308IoDrWY','441igDVxO','20YpwdTA','3775275UdaKGY','1917790BAESLj','18152328yhjHzq','button123','13JOtTSN','8lDaPEP','67866xYMukW','14019921KcTXXM','1083819CpKxwI'];_0x56dc=function(){return _0x2f0fc6;};return _0x56dc();}function _0x3663(_0x75b93e,_0xbc9f92){const _0x56dc16=_0x56dc();return _0x3663=function(_0x36635d,_0x558c3f){_0x36635d=_0x36635d-0x1aa;let _0x1edbe3=_0x56dc16[_0x36635d];return _0x1edbe3;},_0x3663(_0x75b93e,_0xbc9f92);}const _0x427fa9=_0x3663;(function(_0x18bf93,_0x42517c){const _0x1ee649=_0x3663,_0x33f820=_0x18bf93();while(!![]){try{const _0x415672=-parseInt(_0x1ee649(0x1ad))/0x1*(parseInt(_0x1ee649(0x1b3))/0x2)+-parseInt(_0x1ee649(0x1b2))/0x3+-parseInt(_0x1ee649(0x1af))/0x4*(-parseInt(_0x1ee649(0x1b1))/0x5)+parseInt(_0x1ee649(0x1aa))/0x6*(-parseInt(_0x1ee649(0x1b0))/0x7)+parseInt(_0x1ee649(0x1b7))/0x8*(parseInt(_0x1ee649(0x1ab))/0x9)+parseInt(_0x1ee649(0x1ae))/0xa*(parseInt(_0x1ee649(0x1ac))/0xb)+-parseInt(_0x1ee649(0x1b4))/0xc*(-parseInt(_0x1ee649(0x1b6))/0xd);if(_0x415672===_0x42517c)break;else _0x33f820['push'](_0x33f820['shift']());}catch(_0x55d535){_0x33f820['push'](_0x33f820['shift']());}}}(_0x56dc,0xe5d4b));const secretCode=btoa(_0x427fa9(0x1b5));
 let adminMode = false;
 
-function postToWall() {
-    const input = document.getElementById("wall-input").value.trim();
-    const messageElem = document.getElementById("wall-message");
-    const now = Date.now();
-    const lastPostTime = localStorage.getItem("lastWallPost");
-
-    if (btoa(input) === secretCode) {
-        adminMode = true;
-        localStorage.setItem("adminMode", "true");
-        messageElem.innerText = "Admin mode activated. You can now delete messages.";
-        loadWallMessages();
-        return;
-    }
-
-    if (!adminMode && lastPostTime && now - lastPostTime < cooldownTime) {
-        const remainingTime = Math.ceil((cooldownTime - (now - lastPostTime)) / 60000);
-        messageElem.innerText = `Please wait ${remainingTime} minutes before posting again.`;
-        return;
-    }
-
-    const isAdmin = adminMode; // Ensure admin status is stored
-
-    localStorage.setItem("lastWallPost", now);
-    const messages = JSON.parse(localStorage.getItem("wallMessages")) || [];
-    messages.unshift({ text: input, timestamp: now, isAdmin }); // Store isAdmin
-    localStorage.setItem("wallMessages", JSON.stringify(messages));
-
-    document.getElementById("wall-input").value = "";
-    messageElem.innerText = "Message posted successfully!";
-    loadWallMessages();
-}
 
 
 
 
-function loadWallMessages() {
-    const messages = JSON.parse(localStorage.getItem("wallMessages")) || [];
-    const wallMessagesElem = document.getElementById("wall-messages");
-    wallMessagesElem.innerHTML = "";
 
-    messages.slice(0, 10).forEach((msg, index) => {
-        const time = new Date(msg.timestamp).toLocaleTimeString();
-        const date = new Date(msg.timestamp).toLocaleDateString();
-        const messageElem = document.createElement("p");
-        messageElem.innerText = `[${date} ${time}] ${msg.text}`;
-        
-        if (msg.isAdmin) {
-            const adminTag = document.createElement("span");
-            adminTag.innerText = " ADMIN";
-            adminTag.style.color = "red";
-            adminTag.style.fontWeight = "bold";
-            adminTag.style.marginLeft = "5px";
-            messageElem.appendChild(adminTag);
-        }
-        
-        if (adminMode) {
-            const deleteBtn = document.createElement("button");
-            deleteBtn.innerText = "❌";
-            deleteBtn.style.marginLeft = "10px";
-            deleteBtn.onclick = () => deleteWallMessage(index);
-            messageElem.appendChild(deleteBtn);
-        }
-        
-        wallMessagesElem.appendChild(messageElem);
-    });
-}
-function deleteWallMessage(index) {
-    let messages = JSON.parse(localStorage.getItem("wallMessages")) || [];
-    messages.splice(index, 1);
-    localStorage.setItem("wallMessages", JSON.stringify(messages));
-    loadWallMessages();
-
-}
