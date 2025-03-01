@@ -57,3 +57,21 @@ if (canvas) {
     initStars();
     animateStars();
 }
+let lastFrameTime = performance.now();
+let fps = 0;
+
+function updateFPS() {
+    const now = performance.now();
+    fps = Math.round(1000 / (now - lastFrameTime));
+    lastFrameTime = now;
+    document.getElementById("fps-counter").textContent = `FPS: ${fps}`;
+    requestAnimationFrame(updateFPS);
+}
+
+updateFPS();
+fetch('https://api.countapi.xyz/hit/xbigi.xyz/visits')
+  .then(response => response.json())
+  .then(data => {
+      document.getElementById("visit-counter").textContent = `Visitors: ${data.value}`;
+  })
+  .catch(error => console.error('Error fetching visitor count:', error));
