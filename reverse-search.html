@@ -3,15 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About - xbigi.xyz</title>
+    <title>Image Reverse Search</title>
     <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
     <canvas id="stars"></canvas>
-
+    <div id="fps-counter">FPS: 0</div>
     <header>
-        <h1>xbigi.xyz</h1>
-        <div id="fps-counter">FPS: 0</div>
+        <h1>Image Reverse Search</h1>
         <nav>
             <a href="index.html">Home</a>
             <a href="about.html">About</a>
@@ -23,21 +22,27 @@
                     <a href="ocr.html">Image to Text (OCR)</a>
                     <a href="qr.html">QR Code Generator</a>
                     <a href="ipinfo.html">IP & Browser Info</a>
-                    <a href="reverse-search.html">Image Reverse Search</a>  
+                    <a href="reverse-search.html">Image Reverse Search</a>
                 </div>
             </div>
         </nav>
     </header>
 
     <main>
-        <h2>About Me</h2>
-        <p>xbigi.xyz is a simple personal website inspired by minimalism.</p>
+        <h2>Upload an Image to Find Similar Images</h2>
+        <h2 id="issuesimage">(might have issues, working on a fix)</h2>
+        <input type="file" id="imageUpload" accept="image/*">
+        <button id="searchButton" disabled>Search Image</button>
+        <p id="previewText"></p>
+        <img id="previewImage" style="display: none; max-width: 100%; margin-top: 10px;">
     </main>
 
     <footer>
         <p>© 2025 xbigi.xyz - All rights reserved.</p>
     </footer>
-    <div id="custom-cursor"></div>
+
+    <script src="assets/reverse-search.js"></script>
+    
     <script src="assets/script.js"></script>
 </body>
 </html>

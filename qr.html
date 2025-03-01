@@ -3,16 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About - xbigi.xyz</title>
+    <title>QR Code Generator</title>
     <link rel="stylesheet" href="assets/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 </head>
 <body>
     <canvas id="stars"></canvas>
+    <div id="fps-counter">FPS: 0</div>
 
     <header>
-        <h1>xbigi.xyz</h1>
-        <div id="fps-counter">FPS: 0</div>
-        <nav>
+        <h1>QR Code Generator</h1>
+         <nav>
             <a href="index.html">Home</a>
             <a href="about.html">About</a>
             <a href="projects.html">Projects</a>
@@ -30,14 +31,19 @@
     </header>
 
     <main>
-        <h2>About Me</h2>
-        <p>xbigi.xyz is a simple personal website inspired by minimalism.</p>
+        <h2>Generate Your QR Code</h2>
+        <input type="text" id="qrText" placeholder="Enter text or URL">
+        <button onclick="generateQR()">Generate</button>
+        <div id="qrCode"></div>
+        <button id="downloadQR" style="display:none;">Download QR Code</button>
     </main>
 
     <footer>
         <p>© 2025 xbigi.xyz - All rights reserved.</p>
     </footer>
-    <div id="custom-cursor"></div>
+
+    <script src="assets/qr.js"></script>
     <script src="assets/script.js"></script>
+
 </body>
 </html>

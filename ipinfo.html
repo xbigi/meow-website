@@ -3,15 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About - xbigi.xyz</title>
+    <title>IP & Browser Info</title>
     <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
     <canvas id="stars"></canvas>
+    <div id="fps-counter">FPS: 0</div>
 
     <header>
-        <h1>xbigi.xyz</h1>
-        <div id="fps-counter">FPS: 0</div>
+        <h1>IP & Browser Info</h1>
         <nav>
             <a href="index.html">Home</a>
             <a href="about.html">About</a>
@@ -30,14 +30,28 @@
     </header>
 
     <main>
-        <h2>About Me</h2>
-        <p>xbigi.xyz is a simple personal website inspired by minimalism.</p>
+        <h2>Your IP & Device Information</h2>
+        <p><strong>IP Address:</strong> <span id="ip"></span></p>
+        <p><strong>Location:</strong> <span id="location"></span></p>
+        <p><strong>ISP:</strong> <span id="isp"></span></p>
+        <p><strong>Time Zone:</strong> <span id="timezone"></span></p>
+        <p><strong>Latitude / Longitude:</strong> <span id="latlong"></span></p>
+        <p><strong>Screen Resolution:</strong> <span id="screen"></span></p>
+        <p><strong>Browser:</strong> <span id="browser"></span></p>
+        <p><strong>Operating System:</strong> <span id="os"></span></p>
+        <p><strong>Device Type:</strong> <span id="device"></span></p>
+    
+        <p class="privacy-msg"> Your data is not stored or shared. This information is only visible to you.</p>
     </main>
+    
+    
 
     <footer>
         <p>© 2025 xbigi.xyz - All rights reserved.</p>
     </footer>
-    <div id="custom-cursor"></div>
+
+    <script src="assets/ipinfo.js"></script>
     <script src="assets/script.js"></script>
+
 </body>
 </html>
