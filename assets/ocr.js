@@ -2,7 +2,7 @@ document.getElementById('imageUpload').addEventListener('change', function(event
     processImage(event.target.files[0]);
 });
 
-// Handle Paste Event
+// handle paste 
 document.addEventListener('paste', function(event) {
     const items = (event.clipboardData || event.originalEvent.clipboardData).items;
     for (let item of items) {
@@ -13,7 +13,7 @@ document.addEventListener('paste', function(event) {
     }
 });
 
-// Handle Drag & Drop Event
+// handle drag n drop
 const dropArea = document.getElementById('dropArea');
 
 dropArea.addEventListener('dragover', function(event) {
@@ -35,7 +35,7 @@ dropArea.addEventListener('drop', function(event) {
     }
 });
 
-// OCR Processing Function
+// OCR function
 function processImage(imageFile) {
     if (!imageFile) return;
     

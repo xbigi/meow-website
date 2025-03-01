@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
-    // Get Browser Info
+    // get browser info
     function getBrowserInfo() {
         const userAgent = navigator.userAgent;
         if (userAgent.includes("Chrome")) return "Google Chrome";
@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", function () {
         return "Unknown";
     }
 
-    // Get OS Info
+    // get OS info
     function getOSInfo() {
         const userAgent = navigator.userAgent;
         if (userAgent.includes("Windows")) return "Windows";
@@ -21,17 +21,17 @@ document.addEventListener("DOMContentLoaded", function () {
         return "Unknown";
     }
 
-    // Get Device Type
+    // get device ttype
     function getDeviceType() {
         return /Mobi|Android/i.test(navigator.userAgent) ? "Mobile" : "Desktop";
     }
 
-    // Get Screen Resolution
+    // get screen res
     function getScreenResolution() {
         return `${window.screen.width} x ${window.screen.height}`;
     }
 
-    // Fetch IP Address from ipify (More Reliable)
+    // fetch IP  from ipify
     fetch("https://api64.ipify.org?format=json")
         .then(response => response.json())
         .then(data => {
@@ -42,7 +42,7 @@ document.addEventListener("DOMContentLoaded", function () {
             document.getElementById("ip").textContent = "Error fetching IP";
         });
 
-    // Fetch Additional Info from ipinfo.io (More Reliable)
+    // fetch addditional info from ipinfo.io 
     fetch("https://ipinfo.io/json")
         .then(response => response.json())
         .then(data => {
@@ -59,7 +59,7 @@ document.addEventListener("DOMContentLoaded", function () {
             document.getElementById("latlong").textContent = "Unavailable";
         });
 
-    // Set Browser, OS, and Device Info
+    // set browser, OS, and device info
     document.getElementById("browser").textContent = getBrowserInfo();
     document.getElementById("os").textContent = getOSInfo();
     document.getElementById("device").textContent = getDeviceType();

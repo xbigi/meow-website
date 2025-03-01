@@ -3,7 +3,7 @@ function generateQR() {
     const qrContainer = document.getElementById('qrCode');
     const downloadBtn = document.getElementById('downloadQR');
 
-    // Clear old QR code
+    // clear old qr code
     qrContainer.innerHTML = "";
 
     if (!qrText.trim()) {
@@ -11,14 +11,14 @@ function generateQR() {
         return;
     }
 
-    // Generate QR Code
+    // gen qr code
     const qr = new QRCode(qrContainer, {
         text: qrText,
         width: 256,
         height: 256
     });
 
-    // Show download button after QR is generated
+    // show download btn
     setTimeout(() => {
         const qrCanvas = qrContainer.querySelector("canvas");
         if (qrCanvas) {

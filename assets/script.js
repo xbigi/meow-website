@@ -1,4 +1,4 @@
-    // 🌠 STAR BACKGROUND ANIMATION
+    // star background
     const canvas = document.getElementById("stars");
     if (canvas) {
         const ctx = canvas.getContext("2d");
@@ -59,7 +59,7 @@
         animateStars();
     }
     
-    // 🎮 FPS COUNTER (Only if FPS element exists)
+    // fps counter
     const fpsCounter = document.getElementById("fps-counter");
     if (fpsCounter) {
         let lastFrameTime = performance.now();
@@ -83,12 +83,12 @@
     
     document.addEventListener("DOMContentLoaded", function () {
         var options = {
-            strings: ['Welcome :)'], // No pipe in the text here
+            strings: ['Welcome :)'],
             typeSpeed: 50,
-            showCursor: false, // Disable Typed.js cursor
+            showCursor: false,
             loop: false,
             onComplete: function () {
-                // After typing ends, add the blinking cursor
+                // pipe bliinking
                 const welcomeText = document.getElementById("welcome-text");
                 welcomeText.innerHTML += '<span class="blinking-cursor">|</span>';
             }
