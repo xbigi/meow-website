@@ -82,28 +82,6 @@ if (fpsCounter) {
 }
 
 
-// 🌍 VISITOR COUNTER (Only if Visit Counter Exists)
-const visitCounter = document.getElementById("visit-counter");
 
-if (visitCounter) {
-    fetch('https://api.api-ninjas.com/v1/counter?id=xbigi_visits&hit=true', {
-        method: "GET",
-        headers: {
-            "X-Api-Key": "OVBCUnVES3uSHq3VTyVRMQ==IUbTTPf4HKP8vaVP"
-        }
-    })
-    .then(response => {
-        if (!response.ok) {
-            throw new Error(`HTTP error! Status: ${response.status}`);
-        }
-        return response.json();
-    })
-    .then(data => {
-        visitCounter.textContent = `Visitors: ${data.value}`;
-    })
-    .catch(error => {
-        console.error("Error fetching visitor count:", error);
-        visitCounter.textContent = "Visitors: Error";
-    });
-}
+
 
