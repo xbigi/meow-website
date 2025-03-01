@@ -26,6 +26,16 @@
         box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.6);
     }
     
+    /* Hide Custom Cursor on Mobile */
+    @media (max-width: 768px) {
+        #custom-cursor {
+            display: none;
+        }
+        body {
+            cursor: default;
+        }
+    }
+    
     /* Main Content */
     main {
         flex-grow: 1;
@@ -148,5 +158,12 @@
     
     /* Remove the blinking cursor in Typed.js */
     .typed-cursor {
-        display: none;
+        display: inline-block;
+        animation: blink 1s infinite;
+    }
+    
+    @keyframes blink {
+        50% {
+            opacity: 0;
+        }
     }
