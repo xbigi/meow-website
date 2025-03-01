@@ -81,22 +81,20 @@
         updateFPS();
     }
     
-    // 📝 Typing Effect for Welcome Text
-    document.addEventListener('DOMContentLoaded', function () {
+    document.addEventListener("DOMContentLoaded", function () {
         var options = {
-            strings: ['Welcome to xbigi.xyz'],
+            strings: ['Welcome :)'], // No pipe in the text here
             typeSpeed: 50,
-            showCursor: true,
-            cursorChar: '|',
-            loop: false
+            showCursor: false, // Disable Typed.js cursor
+            loop: false,
+            onComplete: function () {
+                // After typing ends, add the blinking cursor
+                const welcomeText = document.getElementById("welcome-text");
+                welcomeText.innerHTML += '<span class="blinking-cursor">|</span>';
+            }
         };
     
-        new Typed('#welcome-text', options);
-    
-        // Make the cursor blink indefinitely
-        setInterval(() => {
-            document.querySelector('.typed-cursor').classList.toggle('hidden');
-        }, 500);
+        new Typed("#welcome-text", options);
     });
     
 

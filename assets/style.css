@@ -13,18 +13,7 @@
         cursor: auto;
     }
     
-    /* Custom Cursor */
-    #custom-cursor {
-        width: 20px;
-        height: 20px;
-        background-color: white;
-        border-radius: 50%;
-        position: absolute;
-        pointer-events: none;
-        transform: translate(-50%, -50%);
-        transition: transform 0.1s ease-out;
-        box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.6);
-    }
+    
     
     /* Hide Custom Cursor on Mobile */
     @media (max-width: 768px) {
@@ -156,12 +145,7 @@
         z-index: 9999;
     }
     
-    /* Remove the blinking cursor in Typed.js */
-    .typed-cursor {
-        display: inline-block;
-        animation: blink 1s infinite;
-    }
-    
+  
     @keyframes blink {
         50% {
             opacity: 0;
@@ -314,4 +298,56 @@ button:hover {
 }
 #issuesimage{
     color: red;
+}
+#discord-container {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 10px;
+    border-radius: 10px;
+    width: fit-content;
+    margin: auto;
+}
+
+#discord-avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.2);
+}
+
+#discord-info p {
+    margin: 5px 0;
+}
+.blinking-cursor {
+    animation: blink 0.8s infinite;
+    color: rgb(255, 255, 255); /* Adjust the color if needed */
+    font-weight: bold;
+}
+
+@keyframes blink {
+    50% {
+        opacity: 0;
+    }
+}
+#bio {
+    max-width: 600px;
+    margin: auto;
+    text-align: center;
+    padding: 20px;
+    font-size: 1.2rem;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    margin-top: 20px;
+}
+
+#bio a {
+    color: cyan;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+#bio a:hover {
+    text-decoration: underline;
 }
