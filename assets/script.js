@@ -67,27 +67,43 @@ if (fpsCounter) {
 
     function updateFPS() {
         const now = performance.now();
-        fps = Math.round(1000 / (now - lastFrameTime));
+        const delta = now - lastFrameTime;
+        fps = Math.round(1000 / delta);
         lastFrameTime = now;
-        fpsCounter.textContent = `FPS: ${fps}`;
+
+        if (fps > 0) {
+            fpsCounter.textContent = `FPS: ${fps}`;
+        }
+
         requestAnimationFrame(updateFPS);
     }
 
     updateFPS();
 }
 
+
 // 🌍 VISITOR COUNTER (Only if Visit Counter Exists)
 const visitCounter = document.getElementById("visit-counter");
+
 if (visitCounter) {
     fetch('https://api.api-ninjas.com/v1/counter?id=xbigi_visits&hit=true', {
-        headers: { 'X-Api-Key': 'OVBCUnVES3uSHq3VTyVRMQ==IUbTTPf4HKP8vaVP' }
+        method: "GET",
+        headers: {
+            "X-Api-Key": "OVBCUnVES3uSHq3VTyVRMQ==IUbTTPf4HKP8vaVP"
+        }
     })
-    .then(response => response.json())
+    .then(response => {
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        return response.json();
+    })
     .then(data => {
         visitCounter.textContent = `Visitors: ${data.value}`;
     })
     .catch(error => {
-        console.error('Error fetching visitor count:', error);
+        console.error("Error fetching visitor count:", error);
         visitCounter.textContent = "Visitors: Error";
     });
 }
+
