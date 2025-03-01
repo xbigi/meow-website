@@ -1,3 +1,4 @@
+// 🌠 STAR BACKGROUND ANIMATION
 const canvas = document.getElementById("stars");
 if (canvas) {
     const ctx = canvas.getContext("2d");
@@ -57,21 +58,36 @@ if (canvas) {
     initStars();
     animateStars();
 }
-let lastFrameTime = performance.now();
-let fps = 0;
 
-function updateFPS() {
-    const now = performance.now();
-    fps = Math.round(1000 / (now - lastFrameTime));
-    lastFrameTime = now;
-    document.getElementById("fps-counter").textContent = `FPS: ${fps}`;
-    requestAnimationFrame(updateFPS);
+// 🎮 FPS COUNTER (Only if FPS element exists)
+const fpsCounter = document.getElementById("fps-counter");
+if (fpsCounter) {
+    let lastFrameTime = performance.now();
+    let fps = 0;
+
+    function updateFPS() {
+        const now = performance.now();
+        fps = Math.round(1000 / (now - lastFrameTime));
+        lastFrameTime = now;
+        fpsCounter.textContent = `FPS: ${fps}`;
+        requestAnimationFrame(updateFPS);
+    }
+
+    updateFPS();
 }
 
-updateFPS();
-fetch('https://api.countapi.xyz/hit/xbigi.xyz/visits')
-  .then(response => response.json())
-  .then(data => {
-      document.getElementById("visit-counter").textContent = `Visitors: ${data.value}`;
-  })
-  .catch(error => console.error('Error fetching visitor count:', error));
+// 🌍 VISITOR COUNTER (Only if Visit Counter Exists)
+const visitCounter = document.getElementById("visit-counter");
+if (visitCounter) {
+    fetch('https://api.api-ninjas.com/v1/counter?id=xbigi_visits&hit=true', {
+        headers: { 'X-Api-Key': 'OVBCUnVES3uSHq3VTyVRMQ==IUbTTPf4HKP8vaVP' }
+    })
+    .then(response => response.json())
+    .then(data => {
+        visitCounter.textContent = `Visitors: ${data.value}`;
+    })
+    .catch(error => {
+        console.error('Error fetching visitor count:', error);
+        visitCounter.textContent = "Visitors: Error";
+    });
+}
